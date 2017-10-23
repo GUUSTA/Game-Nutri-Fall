@@ -418,10 +418,6 @@ int main(void)
                 {
                     switch(evento.keyboard.keycode)
                     {
-                        //seta para baixo
-                        case ALLEGRO_KEY_DOWN:
-                            top = 0;
-                            break;
                         //seta para esquerda
                         case ALLEGRO_KEY_LEFT:
                             top = 1;
@@ -429,10 +425,6 @@ int main(void)
                         //seta para direita.
                         case ALLEGRO_KEY_RIGHT:
                             top = 2;
-                            break;
-                        //Tecla S
-                        case ALLEGRO_KEY_S:
-                            down = 0;
                             break;
                         //Tecla A
                         case ALLEGRO_KEY_A:
