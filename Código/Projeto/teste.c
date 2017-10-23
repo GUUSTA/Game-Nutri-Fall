@@ -17,6 +17,9 @@
 const int LARGURA_TELA = 1280;
 const int ALTURA_TELA = 720;
 
+// Taxa de Frames utilizada
+const int FRAMES_POR_SEGUNDO = 60;
+
 // A nossa variável janela
 ALLEGRO_DISPLAY *janela_inicial = NULL;
 
@@ -49,6 +52,9 @@ ALLEGRO_FONT *fonte28 = NULL;
 // Musica de fundo
 ALLEGRO_AUDIO_STREAM *musica = NULL;
 
+//Double utilizada para o cálculo do tempo de atualização da tela
+double tempoInicial = 0;
+
 // Variáveis auxiliares.
 bool sair = false;
 bool sound_Melodia = true;
@@ -58,314 +64,20 @@ bool normal = false;
 bool desafiante = false;
 bool Iniciar_Jogo = false;
 bool Iniciar_Jogo_Vermelho = false;
+bool limitado = true;
 
 int tecla = 0;
 int top = 0;
 int down = 0;
+int frame = 0;
+
 
 bool inicicializar_comandos();
 bool inicicializar_imagens();
 void inicializar_registradores_da_fila_de_eventos();
 void inicializar_destroy_all();
-
-/*===============================
-==== Inicizalização/Instalação ==
-====== de alguns comandos =======
-=================================*/
-bool inicicializar_comandos()
-{
-    // Inicialização da biblioteca Allegro
-    if (!al_init())
-    {
-        fprintf(stderr, "Falha ao inicializar a Allegro.\n");
-        return false;
-    }
-
-    // Inicialização do add-on para uso de fontes
-    al_init_font_addon();
-    al_init_ttf_addon();
-
-    // Inicialização do add-on para uso de fontes True Type(Fontes do instaladas no PC).
-    if (!al_init_image_addon())
-    {
-        fprintf(stderr, "Falha ao inicializar add-on allegro_image.\n");
-        return false;
-    }
-
-    // Cria nosso Display, e verifica se está tudo certo.
-    janela_inicial = al_create_display(LARGURA_TELA, ALTURA_TELA);
-    if (!janela_inicial)
-    {
-        fprintf(stderr, "Falha ao criar janela_inicial.\n");
-        return false;
-    }
-
-    // Configura o título da janela
-    al_set_window_title(janela_inicial, "Nutri Fall");
-
-    // Torna apto o uso de mouse na aplicação
-    if (!al_install_mouse())
-    {
-        fprintf(stderr, "Falha ao inicializar o mouse.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    // Atribui o cursor padrão do sistema para ser usado
-    if (!al_set_system_mouse_cursor(janela_inicial, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT))
-    {
-        fprintf(stderr, "Falha ao atribuir ponteiro do mouse.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    // Inicializa o teclado para uso.
-    if (!al_install_keyboard())
-    {
-        al_destroy_display(janela_inicial);
-        fprintf(stderr, "Falha ao inicializar Teclado.\n");
-        return false;
-    }
-
-    // Carregando o arquivo de fonte.
-    fonte28 = al_load_font("old_stamper.ttf", 28, 0);
-    if (!fonte28)
-    {
-        al_destroy_display(janela_inicial);
-        fprintf(stderr, "Falha ao carregar fonte28.\n");
-        return false;
-    }
-
-    if (!al_install_audio())
-    {
-        fprintf(stderr, "Falha ao inicializar áudio.\n");
-        return false;
-    }
-
-    if (!al_init_acodec_addon())
-    {
-        fprintf(stderr, "Falha ao inicializar codecs de áudio.\n");
-        return false;
-    }
-
-    if (!al_reserve_samples(1))
-    {
-        fprintf(stderr, "Falha ao alocar canais de áudio.\n");
-        return false;
-    }
-
-    musica = al_load_audio_stream("musica.ogg", 4, 1024);
-    if (!musica)
-    {
-        fprintf(stderr, "Falha ao carregar audio.\n");
-        al_destroy_event_queue(fila_eventos);
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    // Cria nossa fila de eventos, e verifica se está tudo certo.
-    fila_eventos = al_create_event_queue();
-    if (!fila_eventos)
-    {
-        fprintf(stderr, "Falha ao criar fila de eventos.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-}
-
-/*===============================
-==== Inicialização de Imagens ===
-=================================*/
-bool inicicializar_imagens()
-{
-    // Carrega nosso background, e verifica se está tudo certo.
-    imagem_inicial = al_load_bitmap("Tela-inicial.png");
-    if (!imagem_inicial)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_inicial.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_opcoes = al_load_bitmap("Tela_Opcoes3.0.png");
-    if (!imagem_opcoes)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_opcoes.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_on_Melodia = al_load_bitmap("melodia-on.png");
-    if (!imagem_on_Melodia)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_on_Melodia.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_off_Melodia = al_load_bitmap("melodia-off.png");
-    if (!imagem_off_Melodia)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_off_Melodia.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_on_SFX = al_load_bitmap("sfx-on.png");
-    if (!imagem_on_SFX)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_on_SFX.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_off_SFX = al_load_bitmap("sfx-off.png");
-    if (!imagem_off_SFX)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_off_SFX.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Iniciante = al_load_bitmap("Dificuldade_Iniciante.png");
-    if (!imagem_Iniciante)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciante.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Normal = al_load_bitmap("Dificuldade_Normal.png");
-    if (!imagem_Normal)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Normal.\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Desafiante = al_load_bitmap("Dificuldade_Desafiante.png");
-    if (!imagem_Desafiante)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Desafiante\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Plataforma_down_down = al_load_bitmap("Plataforma_down_down.png");
-    if (!imagem_Plataforma_down_down)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_down\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Plataforma_down_left = al_load_bitmap("Plataforma_down_left.png");
-    if (!imagem_Plataforma_down_left)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_left\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Plataforma_down_right = al_load_bitmap("Plataforma_down_right.png");
-    if (!imagem_Plataforma_down_right)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_right\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Plataforma_top_down = al_load_bitmap("Plataforma_top_down.png");
-    if (!imagem_Plataforma_top_down)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_down\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Plataforma_top_left = al_load_bitmap("Plataforma_top_left.png");
-    if (!imagem_Plataforma_top_left)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_left\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Plataforma_top_right = al_load_bitmap("Plataforma_top_right.png");
-    if (!imagem_Plataforma_top_right)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_right\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Iniciar_Jogo_Branco = al_load_bitmap("Iniciar_Jogo_Branco.png");
-    if (!imagem_Iniciar_Jogo_Branco)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciar_Jogo_Branco\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-
-    imagem_Iniciar_Jogo_Vermelho = al_load_bitmap("Iniciar_Jogo_Vermelho.png");
-    if (!imagem_Iniciar_Jogo_Vermelho)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciar_Jogo_Vermelho\n");
-        al_destroy_display(janela_inicial);
-        return false;
-    }
-}
-
-/*=====================================
-==== Inicialização de Registradores ===
-========= da fila de eventos ==========
-=======================================*/
-void inicializar_registradores_da_fila_de_eventos()
-{
-    al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
-    al_set_audio_stream_playing(musica, true);
-
-    // Comandos para dizer a "fila de eventos" registrar ações do Display e Teclado.
-    al_register_event_source(fila_eventos, al_get_display_event_source(janela_inicial));
-    al_register_event_source(fila_eventos, al_get_keyboard_event_source());
-
-    // Dizemos que vamos tratar os eventos vindos do mouse
-    al_register_event_source(fila_eventos, al_get_mouse_event_source());
-}
-
-/*==============================
-==== Desalocação da Memória ====
-================================*/
-
-void inicializar_destroy_all()
-{
-    // Desalocação da Memória
-    al_destroy_font(fonte28);
-
-    al_destroy_display(janela_inicial);
-
-    al_destroy_event_queue(fila_eventos);
-
-    al_destroy_bitmap(imagem_inicial);
-    al_destroy_bitmap(imagem_opcoes);
-    al_destroy_bitmap(imagem_on_Melodia);
-    al_destroy_bitmap(imagem_off_Melodia);
-    al_destroy_bitmap(imagem_on_SFX);
-    al_destroy_bitmap(imagem_off_SFX);
-    al_destroy_bitmap(imagem_Iniciante);
-    al_destroy_bitmap(imagem_Normal);
-    al_destroy_bitmap(imagem_Desafiante);
-    al_destroy_bitmap(imagem_Plataforma_down_down);
-    al_destroy_bitmap(imagem_Plataforma_down_left);
-    al_destroy_bitmap(imagem_Plataforma_down_right);
-    al_destroy_bitmap(imagem_Plataforma_top_down);
-    al_destroy_bitmap(imagem_Plataforma_top_left);
-    al_destroy_bitmap(imagem_Plataforma_top_right);
-    al_destroy_bitmap(imagem_Iniciar_Jogo_Branco);
-    al_destroy_bitmap(imagem_Iniciar_Jogo_Vermelho);
-
-    al_destroy_audio_stream(musica);
-}
+void iniciarTimer();
+double obterTempoTimer();
 
 /*=====================
 ==== Início do Jogo ===
@@ -391,6 +103,8 @@ int main(void)
     // Cria um Loop, onde ele só irá parar se clicar-mos no X(FECHAR JANELA).
     while (!sair)
     {
+    	iniciarTimer();
+
         // Verificamos se há eventos na fila
         while(!al_is_event_queue_empty(fila_eventos))
         {
@@ -770,6 +484,14 @@ int main(void)
                 }
             }
         }
+
+        frame++;
+
+        if (limitado && (obterTempoTimer() < 1.0 / FRAMES_POR_SEGUNDO))
+        {
+            al_rest((1.0 / FRAMES_POR_SEGUNDO) - obterTempoTimer());
+        }
+
         // Atualiza a tela
         al_flip_display();
     }
@@ -777,4 +499,314 @@ int main(void)
     inicializar_destroy_all();
 
     return 0;
+}
+
+
+/*===============================
+==== Inicizalização/Instalação ==
+====== de alguns comandos =======
+=================================*/
+bool inicicializar_comandos()
+{
+    // Inicialização da biblioteca Allegro
+    if (!al_init())
+    {
+        fprintf(stderr, "Falha ao inicializar a Allegro.\n");
+        return false;
+    }
+
+    // Inicialização do add-on para uso de fontes
+    al_init_font_addon();
+    al_init_ttf_addon();
+
+    // Inicialização do add-on para uso de fontes True Type(Fontes do instaladas no PC).
+    if (!al_init_image_addon())
+    {
+        fprintf(stderr, "Falha ao inicializar add-on allegro_image.\n");
+        return false;
+    }
+
+    // Cria nosso Display, e verifica se está tudo certo.
+    janela_inicial = al_create_display(LARGURA_TELA, ALTURA_TELA);
+    if (!janela_inicial)
+    {
+        fprintf(stderr, "Falha ao criar janela_inicial.\n");
+        return false;
+    }
+
+    // Configura o título da janela
+    al_set_window_title(janela_inicial, "Nutri Fall");
+
+    // Torna apto o uso de mouse na aplicação
+    if (!al_install_mouse())
+    {
+        fprintf(stderr, "Falha ao inicializar o mouse.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    // Atribui o cursor padrão do sistema para ser usado
+    if (!al_set_system_mouse_cursor(janela_inicial, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT))
+    {
+        fprintf(stderr, "Falha ao atribuir ponteiro do mouse.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    // Inicializa o teclado para uso.
+    if (!al_install_keyboard())
+    {
+        al_destroy_display(janela_inicial);
+        fprintf(stderr, "Falha ao inicializar Teclado.\n");
+        return false;
+    }
+
+    // Carregando o arquivo de fonte.
+    fonte28 = al_load_font("old_stamper.ttf", 28, 0);
+    if (!fonte28)
+    {
+        al_destroy_display(janela_inicial);
+        fprintf(stderr, "Falha ao carregar fonte28.\n");
+        return false;
+    }
+
+    if (!al_install_audio())
+    {
+        fprintf(stderr, "Falha ao inicializar áudio.\n");
+        return false;
+    }
+
+    if (!al_init_acodec_addon())
+    {
+        fprintf(stderr, "Falha ao inicializar codecs de áudio.\n");
+        return false;
+    }
+
+    if (!al_reserve_samples(1))
+    {
+        fprintf(stderr, "Falha ao alocar canais de áudio.\n");
+        return false;
+    }
+
+    musica = al_load_audio_stream("musica.ogg", 4, 1024);
+    if (!musica)
+    {
+        fprintf(stderr, "Falha ao carregar audio.\n");
+        al_destroy_event_queue(fila_eventos);
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    // Cria nossa fila de eventos, e verifica se está tudo certo.
+    fila_eventos = al_create_event_queue();
+    if (!fila_eventos)
+    {
+        fprintf(stderr, "Falha ao criar fila de eventos.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+}
+
+/*===============================
+==== Inicialização de Imagens ===
+=================================*/
+bool inicicializar_imagens()
+{
+    // Carrega nosso background, e verifica se está tudo certo.
+    imagem_inicial = al_load_bitmap("Tela-inicial.png");
+    if (!imagem_inicial)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_inicial.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_opcoes = al_load_bitmap("Tela_Opcoes3.0.png");
+    if (!imagem_opcoes)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_opcoes.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_on_Melodia = al_load_bitmap("melodia-on.png");
+    if (!imagem_on_Melodia)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_on_Melodia.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_off_Melodia = al_load_bitmap("melodia-off.png");
+    if (!imagem_off_Melodia)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_off_Melodia.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_on_SFX = al_load_bitmap("sfx-on.png");
+    if (!imagem_on_SFX)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_on_SFX.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_off_SFX = al_load_bitmap("sfx-off.png");
+    if (!imagem_off_SFX)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_off_SFX.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Iniciante = al_load_bitmap("Dificuldade_Iniciante.png");
+    if (!imagem_Iniciante)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciante.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Normal = al_load_bitmap("Dificuldade_Normal.png");
+    if (!imagem_Normal)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Normal.\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Desafiante = al_load_bitmap("Dificuldade_Desafiante.png");
+    if (!imagem_Desafiante)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Desafiante\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Plataforma_down_down = al_load_bitmap("Plataforma_down_down.png");
+    if (!imagem_Plataforma_down_down)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_down\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Plataforma_down_left = al_load_bitmap("Plataforma_down_left.png");
+    if (!imagem_Plataforma_down_left)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_left\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Plataforma_down_right = al_load_bitmap("Plataforma_down_right.png");
+    if (!imagem_Plataforma_down_right)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_right\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Plataforma_top_down = al_load_bitmap("Plataforma_top_down.png");
+    if (!imagem_Plataforma_top_down)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_down\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Plataforma_top_left = al_load_bitmap("Plataforma_top_left.png");
+    if (!imagem_Plataforma_top_left)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_left\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Plataforma_top_right = al_load_bitmap("Plataforma_top_right.png");
+    if (!imagem_Plataforma_top_right)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_right\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Iniciar_Jogo_Branco = al_load_bitmap("Iniciar_Jogo_Branco.png");
+    if (!imagem_Iniciar_Jogo_Branco)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciar_Jogo_Branco\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+
+    imagem_Iniciar_Jogo_Vermelho = al_load_bitmap("Iniciar_Jogo_Vermelho.png");
+    if (!imagem_Iniciar_Jogo_Vermelho)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciar_Jogo_Vermelho\n");
+        al_destroy_display(janela_inicial);
+        return false;
+    }
+}
+
+/*=====================================
+==== Inicialização de Registradores ===
+========= da fila de eventos ==========
+=======================================*/
+void inicializar_registradores_da_fila_de_eventos()
+{
+    al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
+    al_set_audio_stream_playing(musica, true);
+
+    // Comandos para dizer a "fila de eventos" registrar ações do Display e Teclado.
+    al_register_event_source(fila_eventos, al_get_display_event_source(janela_inicial));
+    al_register_event_source(fila_eventos, al_get_keyboard_event_source());
+
+    // Dizemos que vamos tratar os eventos vindos do mouse
+    al_register_event_source(fila_eventos, al_get_mouse_event_source());
+}
+
+/*==============================
+==== Desalocação da Memória ====
+================================*/
+
+void inicializar_destroy_all()
+{
+    // Desalocação da Memória
+    al_destroy_font(fonte28);
+
+    al_destroy_display(janela_inicial);
+
+    al_destroy_event_queue(fila_eventos);
+
+    al_destroy_bitmap(imagem_inicial);
+    al_destroy_bitmap(imagem_opcoes);
+    al_destroy_bitmap(imagem_on_Melodia);
+    al_destroy_bitmap(imagem_off_Melodia);
+    al_destroy_bitmap(imagem_on_SFX);
+    al_destroy_bitmap(imagem_off_SFX);
+    al_destroy_bitmap(imagem_Iniciante);
+    al_destroy_bitmap(imagem_Normal);
+    al_destroy_bitmap(imagem_Desafiante);
+    al_destroy_bitmap(imagem_Plataforma_down_down);
+    al_destroy_bitmap(imagem_Plataforma_down_left);
+    al_destroy_bitmap(imagem_Plataforma_down_right);
+    al_destroy_bitmap(imagem_Plataforma_top_down);
+    al_destroy_bitmap(imagem_Plataforma_top_left);
+    al_destroy_bitmap(imagem_Plataforma_top_right);
+    al_destroy_bitmap(imagem_Iniciar_Jogo_Branco);
+    al_destroy_bitmap(imagem_Iniciar_Jogo_Vermelho);
+
+    al_destroy_audio_stream(musica);
+}
+
+void iniciarTimer()
+{
+    tempoInicial = al_get_time();
+}
+
+double obterTempoTimer()
+{
+    return al_get_time() - tempoInicial;
 }
