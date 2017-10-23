@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+//Batata
+
 /*===============================
 ====== Variáveis Globais ========
 =================================*/
