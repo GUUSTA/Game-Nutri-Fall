@@ -42,6 +42,8 @@ ALLEGRO_BITMAP *imagem_Plataforma_down_left = NULL;
 ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Branco = NULL;
 ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Vermelho = NULL;
 
+ALLEGRO_BITMAP *imagem_Fruta_Manga = NULL;
+
 
 //Fila de eventos, ela vai receber as ações do "usuário/programa".
 ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
@@ -70,6 +72,7 @@ int tecla = 0;
 int top = 0;
 int down = 0;
 int frame = 0;
+int i = 0;
 
 
 bool inicicializar_comandos();
@@ -482,6 +485,9 @@ int main(void)
                 {
                     al_draw_bitmap(imagem_Plataforma_down_right, 0, 0, 0);
                 }
+
+                al_draw_bitmap(imagem_Fruta_Manga, 0, 0, 0);
+
             }
         }
 
@@ -501,7 +507,6 @@ int main(void)
     return 0;
 }
 
-
 /*===============================
 ==== Inicizalização/Instalação ==
 ====== de alguns comandos =======
@@ -512,6 +517,7 @@ bool inicicializar_comandos()
     if (!al_init())
     {
         fprintf(stderr, "Falha ao inicializar a Allegro.\n");
+        inicializar_destroy_all();
         return false;
     }
 
@@ -523,6 +529,7 @@ bool inicicializar_comandos()
     if (!al_init_image_addon())
     {
         fprintf(stderr, "Falha ao inicializar add-on allegro_image.\n");
+        inicializar_destroy_all();
         return false;
     }
 
@@ -531,6 +538,7 @@ bool inicicializar_comandos()
     if (!janela_inicial)
     {
         fprintf(stderr, "Falha ao criar janela_inicial.\n");
+        inicializar_destroy_all();
         return false;
     }
 
@@ -541,7 +549,7 @@ bool inicicializar_comandos()
     if (!al_install_mouse())
     {
         fprintf(stderr, "Falha ao inicializar o mouse.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -549,15 +557,15 @@ bool inicicializar_comandos()
     if (!al_set_system_mouse_cursor(janela_inicial, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT))
     {
         fprintf(stderr, "Falha ao atribuir ponteiro do mouse.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
     // Inicializa o teclado para uso.
     if (!al_install_keyboard())
     {
-        al_destroy_display(janela_inicial);
         fprintf(stderr, "Falha ao inicializar Teclado.\n");
+        inicializar_destroy_all();
         return false;
     }
 
@@ -565,26 +573,29 @@ bool inicicializar_comandos()
     fonte28 = al_load_font("old_stamper.ttf", 28, 0);
     if (!fonte28)
     {
-        al_destroy_display(janela_inicial);
         fprintf(stderr, "Falha ao carregar fonte28.\n");
+        inicializar_destroy_all();
         return false;
     }
 
     if (!al_install_audio())
     {
         fprintf(stderr, "Falha ao inicializar áudio.\n");
+        inicializar_destroy_all();
         return false;
     }
 
     if (!al_init_acodec_addon())
     {
         fprintf(stderr, "Falha ao inicializar codecs de áudio.\n");
+        inicializar_destroy_all();
         return false;
     }
 
     if (!al_reserve_samples(1))
     {
         fprintf(stderr, "Falha ao alocar canais de áudio.\n");
+        inicializar_destroy_all();
         return false;
     }
 
@@ -592,8 +603,7 @@ bool inicicializar_comandos()
     if (!musica)
     {
         fprintf(stderr, "Falha ao carregar audio.\n");
-        al_destroy_event_queue(fila_eventos);
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -602,7 +612,7 @@ bool inicicializar_comandos()
     if (!fila_eventos)
     {
         fprintf(stderr, "Falha ao criar fila de eventos.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 }
@@ -617,7 +627,7 @@ bool inicicializar_imagens()
     if (!imagem_inicial)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_inicial.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -625,7 +635,7 @@ bool inicicializar_imagens()
     if (!imagem_opcoes)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_opcoes.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -633,7 +643,7 @@ bool inicicializar_imagens()
     if (!imagem_on_Melodia)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_on_Melodia.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -641,7 +651,7 @@ bool inicicializar_imagens()
     if (!imagem_off_Melodia)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_off_Melodia.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -649,7 +659,7 @@ bool inicicializar_imagens()
     if (!imagem_on_SFX)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_on_SFX.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -657,7 +667,7 @@ bool inicicializar_imagens()
     if (!imagem_off_SFX)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_off_SFX.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -665,7 +675,7 @@ bool inicicializar_imagens()
     if (!imagem_Iniciante)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciante.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -673,7 +683,7 @@ bool inicicializar_imagens()
     if (!imagem_Normal)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Normal.\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -681,7 +691,7 @@ bool inicicializar_imagens()
     if (!imagem_Desafiante)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Desafiante\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -689,7 +699,7 @@ bool inicicializar_imagens()
     if (!imagem_Plataforma_down_down)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_down\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -697,7 +707,7 @@ bool inicicializar_imagens()
     if (!imagem_Plataforma_down_left)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_left\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -705,7 +715,7 @@ bool inicicializar_imagens()
     if (!imagem_Plataforma_down_right)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_right\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -713,7 +723,7 @@ bool inicicializar_imagens()
     if (!imagem_Plataforma_top_down)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_down\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -721,7 +731,7 @@ bool inicicializar_imagens()
     if (!imagem_Plataforma_top_left)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_left\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -729,7 +739,7 @@ bool inicicializar_imagens()
     if (!imagem_Plataforma_top_right)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_right\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -737,7 +747,7 @@ bool inicicializar_imagens()
     if (!imagem_Iniciar_Jogo_Branco)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciar_Jogo_Branco\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
         return false;
     }
 
@@ -745,7 +755,15 @@ bool inicicializar_imagens()
     if (!imagem_Iniciar_Jogo_Vermelho)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciar_Jogo_Vermelho\n");
-        al_destroy_display(janela_inicial);
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_Fruta_Manga = al_load_bitmap("Manga2.png");
+    if (!imagem_Fruta_Manga)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Fruta_Manga\n");
+        inicializar_destroy_all();
         return false;
     }
 }
@@ -797,9 +815,12 @@ void inicializar_destroy_all()
     al_destroy_bitmap(imagem_Plataforma_top_right);
     al_destroy_bitmap(imagem_Iniciar_Jogo_Branco);
     al_destroy_bitmap(imagem_Iniciar_Jogo_Vermelho);
+    al_destroy_bitmap(imagem_Fruta_Manga);
+
 
     al_destroy_audio_stream(musica);
 }
+
 
 void iniciarTimer()
 {
