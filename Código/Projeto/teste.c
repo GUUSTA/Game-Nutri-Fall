@@ -74,7 +74,6 @@ int down = 0;
 int frame = 0;
 int i = 0;
 
-
 bool inicicializar_comandos();
 bool inicicializar_imagens();
 void inicializar_registradores_da_fila_de_eventos();
@@ -87,6 +86,12 @@ double obterTempoTimer();
 =======================*/
 int main(void)
 {
+
+    float raio = 50.0;
+    float x = raio;
+    float y = raio;
+    int dir_x = 0;
+    int dir_y = 0;
 
     inicicializar_comandos();
     inicicializar_imagens();
@@ -106,7 +111,7 @@ int main(void)
     // Cria um Loop, onde ele só irá parar se clicar-mos no X(FECHAR JANELA).
     while (!sair)
     {
-    	iniciarTimer();
+        iniciarTimer();
 
         // Verificamos se há eventos na fila
         while(!al_is_event_queue_empty(fila_eventos))
@@ -486,11 +491,33 @@ int main(void)
                     al_draw_bitmap(imagem_Plataforma_down_right, 0, 0, 0);
                 }
 
-                al_draw_bitmap(imagem_Fruta_Manga, 0, 0, 0);
+                al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
+                al_flip_display();
+                y += 1.0 * dir_y;
+
+                
+                if (x >= LARGURA_TELA - raio)
+                {
+                    dir_x = -1;
+                    x = LARGURA_TELA - raio;
+                } else if (x <= raio) {
+                    dir_x = 1;
+                    x = raio;
+                }
+         
+                if (y >= ALTURA_TELA - raio)
+                {
+                    dir_y = -1;
+                    y = ALTURA_TELA - raio;
+                } else if (y <= raio) {
+                    dir_y = 1;
+                    y = raio;
+                }
 
             }
         }
 
+        al_rest(0.005);
         frame++;
 
         if (limitado && (obterTempoTimer() < 1.0 / FRAMES_POR_SEGUNDO))
