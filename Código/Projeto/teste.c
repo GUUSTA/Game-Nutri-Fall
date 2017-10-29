@@ -86,10 +86,8 @@ double obterTempoTimer();
 =======================*/
 int main(void)
 {
-
-    float raio = 50.0;
-    float x = raio;
-    float y = raio;
+    float x = 0;
+    float y = -100;
     int dir_x = 0;
     int dir_y = 0;
 
@@ -458,8 +456,9 @@ int main(void)
                     tecla = 2;
                 }
             }
+        }
 
-            /*=================
+        /*=================
             === Tela Fase 1 ===
             ===================*/
             if(tecla == 2)
@@ -495,29 +494,17 @@ int main(void)
                 al_flip_display();
                 y += 1.0 * dir_y;
 
-                
-                if (x >= LARGURA_TELA - raio)
-                {
-                    dir_x = -1;
-                    x = LARGURA_TELA - raio;
-                } else if (x <= raio) {
-                    dir_x = 1;
-                    x = raio;
-                }
-         
-                if (y >= ALTURA_TELA - raio)
+                if (y >= ALTURA_TELA - 50)
                 {
                     dir_y = -1;
-                    y = ALTURA_TELA - raio;
-                } else if (y <= raio) {
+                    y = ALTURA_TELA - 50;
+                } else if (y <= 50) {
                     dir_y = 1;
-                    y = raio;
+                    y = 50;
                 }
 
             }
-        }
 
-        al_rest(0.005);
         frame++;
 
         if (limitado && (obterTempoTimer() < 1.0 / FRAMES_POR_SEGUNDO))
