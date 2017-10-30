@@ -69,8 +69,8 @@ bool Iniciar_Jogo_Vermelho = false;
 bool limitado = true;
 
 int tecla = 0;
-int top = 0;
-int down = 0;
+int top = 1;
+int down = 2;
 int frame = 0;
 int i = 0;
 
@@ -86,10 +86,11 @@ double obterTempoTimer();
 =======================*/
 int main(void)
 {
-    float x = 0;
+    float x = 585;
     float y = -100;
+    float raio = 50.0;
     int dir_x = 0;
-    int dir_y = 0;
+    int dir_y = 1;
 
     inicicializar_comandos();
     inicicializar_imagens();
@@ -458,53 +459,85 @@ int main(void)
             }
         }
 
-        /*=================
+            /*=================
             === Tela Fase 1 ===
             ===================*/
             if(tecla == 2)
             {
                 al_clear_to_color(al_map_rgb(255, 255, 255));
-
-                if(top == 0)
-                {
-                    al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
-                }
-                else if(top == 1)
-                {
-                    al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
-                }
-                else if(top == 2)
-                {
-                    al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
-                }
-                if(down == 0)
-                {
-                    al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
-                }
-                else if(down == 1)
-                {
-                    al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
-                }
-                else if(down == 2)
-                {
-                    al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
-                }
+                al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
+                al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
 
                 al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
                 al_flip_display();
                 y += 1.0 * dir_y;
+                x += 1.0 * dir_x;
 
-                if (y >= ALTURA_TELA - 50)
+                if(x >= 487 - 2 * raio && x <= 793 + 2 * raio)
                 {
-                    dir_y = -1;
-                    y = ALTURA_TELA - 50;
-                } else if (y <= 50) {
-                    dir_y = 1;
-                    y = 50;
+                    if (y >= 150 - raio)
+                    {
+                        if(top == 1)
+                        {
+                            dir_y = 0;
+                            dir_x = -1;
+                        }
+                        else if(top == 2)
+                        {
+                            dir_y = 0;
+                            dir_x = 1;
+                        }
+                    }
                 }
-
+                else if (x >= 793 - 2 * raio && x <= 1000 + 2 * raio)
+                {
+                    if(y >= 140 - raio && y < 398 - raio)
+                    {
+                        dir_y = 1;
+                        dir_x = 0;
+                    }
+                    else if(y == 398 - raio)
+                    {
+                        dir_y = 0;
+                        if (down == 1)
+                        {
+                            dir_x = -1;
+                        }
+                        else if (down == 2)
+                        {
+                            dir_x = 1;
+                        }
+                    }
+                }
+                else if(x >= 280 - 2 * raio && x <= 487 - 2 * raio)
+                {
+                    if(y >= 140 - raio && y < 398 - raio)
+                    {
+                        dir_y = 1;
+                        dir_x = 0;
+                    }
+                    else if(y == 398 - raio)
+                    {
+                        if (down == 1)
+                        {
+                            dir_y = 0;
+                            dir_x = -1;
+                        }
+                        else if (down == 2)
+                        {
+                            dir_y = 0;
+                            dir_x = 1;
+                        }
+                    }
+                }
+                else if (x < 280 - 2 * raio || x > 487 - 2 * raio)
+                {
+                    dir_y = 1;
+                    dir_x = 0;
+                }
             }
 
+        al_rest(5/100000);
         frame++;
 
         if (limitado && (obterTempoTimer() < 1.0 / FRAMES_POR_SEGUNDO))
