@@ -471,11 +471,11 @@ int main(void)
                 }
                 else if(top == 1)
                 {
-                    al_draw_bitmap(imagem_Plataforma_top_left, 0, 0, 0);
+                    al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
                 }
                 else if(top == 2)
                 {
-                    al_draw_bitmap(imagem_Plataforma_top_right, 0, 0, 0);
+                    al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
                 }
                 if(down == 0)
                 {
@@ -483,11 +483,11 @@ int main(void)
                 }
                 else if(down == 1)
                 {
-                    al_draw_bitmap(imagem_Plataforma_down_left, 0, 0, 0);
+                    al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
                 }
                 else if(down == 2)
                 {
-                    al_draw_bitmap(imagem_Plataforma_down_right, 0, 0, 0);
+                    al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
                 }
 
                 al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
