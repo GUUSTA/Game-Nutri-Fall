@@ -473,7 +473,7 @@ int main(void)
                 y += 1.0 * dir_y;
                 x += 1.0 * dir_x;
 
-                if(x >= 487 - 2 * raio && x <= 793 + 2 * raio)
+                if((x >= 487 - (2 * raio)) && (x <= 793 + (2 * raio)))
                 {
                     if (y >= 150 - raio)
                     {
@@ -489,9 +489,61 @@ int main(void)
                         }
                     }
                 }
-                else if (x >= 793 - 2 * raio && x <= 1000 + 2 * raio)
+                else if((x < 487 - (2*raio)) && (x >= 184 - (2*raio)))
                 {
-                    if(y >= 140 - raio && y < 398 - raio)
+                    if(y >= 190 - raio && y < 397 - raio)
+                    {
+                        dir_x = 0;
+                        dir_y = 1;
+                    }
+                    else if(y == 397 - raio)
+                    {
+                        if(down == 1)
+                        {
+                            dir_x = -1;
+                            dir_y = 0;
+                        }
+                        else if(down == 2)
+                        {
+                            dir_x = 1;
+                            dir_y = 0;
+                        }
+                    }
+                }
+                else if((x > 793 + (2*raio)) && (x <= 1097 + (2*raio)))
+                {
+                   if(y >= 190 - raio && y < 397 - raio)
+                    {
+                        dir_x = 0;
+                        dir_y = 1;
+                    }
+                    else if(y == 397 - raio)
+                    {
+                        if(down == 1)
+                        {
+                            dir_x = -1;
+                            dir_y = 0;
+                        }
+                        else if(down == 2)
+                        {
+                            dir_x = 1;
+                            dir_y = 0;
+                        }
+                    }
+                }
+                else if((x < 184 - (2*raio)) || (x > 1097 + (2*raio)))
+                {
+                        dir_x = 0;
+                        dir_y = 1;
+                }
+                else if((x >= 487 - (2 * raio)) && (x <= 793 + (2 * raio) && (y == 397 - raio)))
+                {
+                    dir_x = 0;
+                    dir_y = 1;
+                }
+                /* else if (x >= 793 - 2 * raio && x <= 1000 + 2 * raio)
+                {
+                    if(y >= 140 - raio && y < 348 - raio)
                     {
                         dir_y = 1;
                         dir_x = 0;
@@ -511,7 +563,7 @@ int main(void)
                 }
                 else if(x >= 280 - 2 * raio && x <= 487 - 2 * raio)
                 {
-                    if(y >= 140 - raio && y < 398 - raio)
+                    if(y >= 140 - raio && y < 348 - raio)
                     {
                         dir_y = 1;
                         dir_x = 0;
@@ -535,9 +587,10 @@ int main(void)
                     dir_y = 1;
                     dir_x = 0;
                 }
+                */
             }
 
-        al_rest(5/100000);
+        al_rest(5/10);
         frame++;
 
         if (limitado && (obterTempoTimer() < 1.0 / FRAMES_POR_SEGUNDO))
