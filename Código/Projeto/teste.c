@@ -18,7 +18,7 @@ const int LARGURA_TELA = 1280;
 const int ALTURA_TELA = 720;
 
 // Taxa de Frames utilizada
-const int FRAMES_POR_SEGUNDO = 60;
+int FRAMES_POR_SEGUNDO = 120;
 
 // A nossa variável janela
 ALLEGRO_DISPLAY *janela_inicial = NULL;
@@ -89,6 +89,7 @@ int main(void)
     float x = 585;
     float y = -100;
     float raio = 50.0;
+    float tam_fruta = 2*raio;
     int dir_x = 0;
     int dir_y = 1;
 
@@ -473,7 +474,67 @@ int main(void)
                 y += 1.0 * dir_y;
                 x += 1.0 * dir_x;
 
-                if((x >= 487 - (2 * raio)) && (x <= 793 + (2 * raio)))
+                if(y <= 192 - tam_fruta)
+                {
+                    dir_y = 1;
+                    dir_x = 0;
+                }
+                if(y == 192 - tam_fruta)
+                {
+                   if(x >= 487 - tam_fruta)
+                   {
+                       if(792 >= x)
+                        {
+                            if(top == 1)
+                            {
+                                dir_y = 0;
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_y = 0;
+                                dir_x = 1;
+                            }
+                        }
+                    }
+                    else if(x < 487 - tam_fruta || x > 792 + tam_fruta)
+                    {
+                        dir_x = 0;
+                        dir_y = 1;
+                    }
+                }
+                else if(y < 398 - raio && y > 192 - raio)
+                {
+                    dir_x = 0;
+                    dir_y = 1;
+                }
+                else if(y == 398 - raio)
+                {
+                    if(x >= 479 + tam_fruta)
+                    {
+                        if(x <= 174 - tam_fruta)
+                        {
+                            if(down == 1)
+                            {
+                                dir_y = 0;
+                                dir_x = -1;
+                            }
+                            else if(down == 2)
+                            {
+                                dir_y = 0;
+                                dir_x = 1;
+                            }
+                        }
+                    }
+
+                }
+                else if(y > 398 - raio && y <= 720 - raio)
+                {
+                    dir_x = 0;
+                    dir_y = 1;
+                }
+
+                /* if((x >= 487 - (2 * raio)) && (x <= 793 + (2 * raio)))
                 {
                     if (y >= 150 - raio)
                     {
@@ -541,56 +602,9 @@ int main(void)
                     dir_x = 0;
                     dir_y = 1;
                 }
-                /* else if (x >= 793 - 2 * raio && x <= 1000 + 2 * raio)
-                {
-                    if(y >= 140 - raio && y < 348 - raio)
-                    {
-                        dir_y = 1;
-                        dir_x = 0;
-                    }
-                    else if(y == 398 - raio)
-                    {
-                        dir_y = 0;
-                        if (down == 1)
-                        {
-                            dir_x = -1;
-                        }
-                        else if (down == 2)
-                        {
-                            dir_x = 1;
-                        }
-                    }
-                }
-                else if(x >= 280 - 2 * raio && x <= 487 - 2 * raio)
-                {
-                    if(y >= 140 - raio && y < 348 - raio)
-                    {
-                        dir_y = 1;
-                        dir_x = 0;
-                    }
-                    else if(y == 398 - raio)
-                    {
-                        if (down == 1)
-                        {
-                            dir_y = 0;
-                            dir_x = -1;
-                        }
-                        else if (down == 2)
-                        {
-                            dir_y = 0;
-                            dir_x = 1;
-                        }
-                    }
-                }
-                else if (x < 280 - 2 * raio || x > 487 - 2 * raio)
-                {
-                    dir_y = 1;
-                    dir_x = 0;
-                }
-                */
             }
-
-        al_rest(5/10);
+            */
+        }
         frame++;
 
         if (limitado && (obterTempoTimer() < 1.0 / FRAMES_POR_SEGUNDO))
