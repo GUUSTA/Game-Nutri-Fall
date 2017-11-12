@@ -52,7 +52,9 @@ ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
 ALLEGRO_FONT *fonte28 = NULL;
 
 // Musica de fundo
-ALLEGRO_AUDIO_STREAM *musica = NULL;
+ALLEGRO_AUDIO_STREAM *musica_journey = NULL;
+ALLEGRO_AUDIO_STREAM *musica_megaman = NULL;
+
 
 //Double utilizada para o cálculo do tempo de atualização da tela
 double tempoInicial = 0;
@@ -412,13 +414,13 @@ int main(void)
                 if(sound_Melodia == true)
                 {
                     al_draw_bitmap(imagem_on_Melodia , 0, 0, 0);
-                    al_set_audio_stream_playing(musica, true);
+                    al_set_audio_stream_playing(musica_journey, true);
                 }
                 else
                     if(sound_Melodia == false)
                     {
                         al_draw_bitmap(imagem_off_Melodia , 0, 0, 0);
-                        al_set_audio_stream_playing(musica, false);
+                        al_set_audio_stream_playing(musica_journey, false);
                     }
 
                 if(sound_SFX == true)
@@ -460,83 +462,32 @@ int main(void)
             }
         }
 
-            /*=================
-            === Tela Fase 1 ===
-            ===================*/
-            if(tecla == 2)
+        /*=================
+        === Tela Fase 1 ===
+        ===================*/
+        if(tecla == 2)
+        {
+            al_set_audio_stream_playing(musica_journey, false);
+            al_set_audio_stream_playing(musica_megaman, true);
+            al_clear_to_color(al_map_rgb(255, 255, 255));
+            al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
+            al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
+
+            al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
+            al_flip_display();
+            y += 1.0 * dir_y;
+            x += 1.0 * dir_x;
+
+            if(y <= 192 - tam_fruta)
             {
-                al_clear_to_color(al_map_rgb(255, 255, 255));
-                al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
-                al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
-
-                al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
-                al_flip_display();
-                y += 1.0 * dir_y;
-                x += 1.0 * dir_x;
-
-                if(y <= 192 - tam_fruta)
-                {
-                    dir_y = 1;
-                    dir_x = 0;
-                }
-                if(y == 192 - tam_fruta)
-                {
-                   if(x >= 487 - tam_fruta)
-                   {
-                       if(792 >= x)
-                        {
-                            if(top == 1)
-                            {
-                                dir_y = 0;
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_y = 0;
-                                dir_x = 1;
-                            }
-                        }
-                    }
-                    else if(x < 487 - tam_fruta || x > 792 + tam_fruta)
-                    {
-                        dir_x = 0;
-                        dir_y = 1;
-                    }
-                }
-                else if(y < 398 - raio && y > 192 - raio)
-                {
-                    dir_x = 0;
-                    dir_y = 1;
-                }
-                else if(y == 398 - raio)
-                {
-                    if(x >= 479 + tam_fruta)
-                    {
-                        if(x <= 174 - tam_fruta)
-                        {
-                            if(down == 1)
-                            {
-                                dir_y = 0;
-                                dir_x = -1;
-                            }
-                            else if(down == 2)
-                            {
-                                dir_y = 0;
-                                dir_x = 1;
-                            }
-                        }
-                    }
-
-                }
-                else if(y > 398 - raio && y <= 720 - raio)
-                {
-                    dir_x = 0;
-                    dir_y = 1;
-                }
-
-                /* if((x >= 487 - (2 * raio)) && (x <= 793 + (2 * raio)))
-                {
-                    if (y >= 150 - raio)
+                dir_y = 1;
+                dir_x = 0;
+            }
+            if(y == 192 - tam_fruta)
+            {
+               if(x >= 487 - tam_fruta)
+               {
+                   if(792 >= x)
                     {
                         if(top == 1)
                         {
@@ -550,60 +501,113 @@ int main(void)
                         }
                     }
                 }
-                else if((x < 487 - (2*raio)) && (x >= 184 - (2*raio)))
-                {
-                    if(y >= 190 - raio && y < 397 - raio)
-                    {
-                        dir_x = 0;
-                        dir_y = 1;
-                    }
-                    else if(y == 397 - raio)
-                    {
-                        if(down == 1)
-                        {
-                            dir_x = -1;
-                            dir_y = 0;
-                        }
-                        else if(down == 2)
-                        {
-                            dir_x = 1;
-                            dir_y = 0;
-                        }
-                    }
-                }
-                else if((x > 793 + (2*raio)) && (x <= 1097 + (2*raio)))
-                {
-                   if(y >= 190 - raio && y < 397 - raio)
-                    {
-                        dir_x = 0;
-                        dir_y = 1;
-                    }
-                    else if(y == 397 - raio)
-                    {
-                        if(down == 1)
-                        {
-                            dir_x = -1;
-                            dir_y = 0;
-                        }
-                        else if(down == 2)
-                        {
-                            dir_x = 1;
-                            dir_y = 0;
-                        }
-                    }
-                }
-                else if((x < 184 - (2*raio)) || (x > 1097 + (2*raio)))
-                {
-                        dir_x = 0;
-                        dir_y = 1;
-                }
-                else if((x >= 487 - (2 * raio)) && (x <= 793 + (2 * raio) && (y == 397 - raio)))
+                else if(x < 487 - tam_fruta || x > 792 + tam_fruta)
                 {
                     dir_x = 0;
                     dir_y = 1;
                 }
             }
-            */
+            else if(y < 398 - raio && y > 192 - raio)
+            {
+                dir_x = 0;
+                dir_y = 1;
+            }
+            else if(y == 398 - raio)
+            {
+                if(x >= 479 + tam_fruta)
+                {
+                    if(x <= 174 - tam_fruta)
+                    {
+                        if(down == 1)
+                        {
+                            dir_y = 0;
+                            dir_x = -1;
+                        }
+                        else if(down == 2)
+                        {
+                            dir_y = 0;
+                            dir_x = 1;
+                        }
+                    }
+                }
+
+            }
+            else if(y > 398 - raio && y <= 720 - raio)
+            {
+                dir_x = 0;
+                dir_y = 1;
+            }
+
+            /* if((x >= 487 - (2 * raio)) && (x <= 793 + (2 * raio)))
+            {
+                if (y >= 150 - raio)
+                {
+                    if(top == 1)
+                    {
+                        dir_y = 0;
+                        dir_x = -1;
+                    }
+                    else if(top == 2)
+                    {
+                        dir_y = 0;
+                        dir_x = 1;
+                    }
+                }
+            }
+            else if((x < 487 - (2*raio)) && (x >= 184 - (2*raio)))
+            {
+                if(y >= 190 - raio && y < 397 - raio)
+                {
+                    dir_x = 0;
+                    dir_y = 1;
+                }
+                else if(y == 397 - raio)
+                {
+                    if(down == 1)
+                    {
+                        dir_x = -1;
+                        dir_y = 0;
+                    }
+                    else if(down == 2)
+                    {
+                        dir_x = 1;
+                        dir_y = 0;
+                    }
+                }
+            }
+            else if((x > 793 + (2*raio)) && (x <= 1097 + (2*raio)))
+            {
+               if(y >= 190 - raio && y < 397 - raio)
+                {
+                    dir_x = 0;
+                    dir_y = 1;
+                }
+                else if(y == 397 - raio)
+                {
+                    if(down == 1)
+                    {
+                        dir_x = -1;
+                        dir_y = 0;
+                    }
+                    else if(down == 2)
+                    {
+                        dir_x = 1;
+                        dir_y = 0;
+                    }
+                }
+            }
+            else if((x < 184 - (2*raio)) || (x > 1097 + (2*raio)))
+            {
+                    dir_x = 0;
+                    dir_y = 1;
+            }
+            else if((x >= 487 - (2 * raio)) && (x <= 793 + (2 * raio) && (y == 397 - raio)))
+            {
+                dir_x = 0;
+                dir_y = 1;
+            }
+        }
+        */
         }
         frame++;
 
@@ -713,10 +717,18 @@ bool inicicializar_comandos()
         return false;
     }
 
-    musica = al_load_audio_stream("musica.ogg", 4, 1024);
-    if (!musica)
+    musica_journey = al_load_audio_stream("musica Journey.ogg", 4, 1024);
+    if (!musica_journey)
     {
-        fprintf(stderr, "Falha ao carregar audio.\n");
+        fprintf(stderr, "Falha ao carregar audio -  musica Journey.ogg.\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    musica_megaman = al_load_audio_stream("musica Megaman.ogg", 4, 1024);
+    if (!musica_megaman)
+    {
+        fprintf(stderr, "Falha ao carregar audio -  musica Megaman.ogg.ogg.\n");
         inicializar_destroy_all();
         return false;
     }
@@ -888,8 +900,10 @@ bool inicicializar_imagens()
 =======================================*/
 void inicializar_registradores_da_fila_de_eventos()
 {
-    al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
-    al_set_audio_stream_playing(musica, true);
+    al_attach_audio_stream_to_mixer(musica_journey, al_get_default_mixer());
+    al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
+    al_set_audio_stream_playing(musica_journey, true);
+    al_set_audio_stream_playing(musica_megaman, false);
 
     // Comandos para dizer a "fila de eventos" registrar ações do Display e Teclado.
     al_register_event_source(fila_eventos, al_get_display_event_source(janela_inicial));
@@ -932,7 +946,8 @@ void inicializar_destroy_all()
     al_destroy_bitmap(imagem_Fruta_Manga);
 
 
-    al_destroy_audio_stream(musica);
+    al_destroy_audio_stream(musica_journey);
+    al_destroy_audio_stream(musica_megaman);
 }
 
 
