@@ -468,6 +468,7 @@ int main(void)
         if(tecla == 2)
         {
             al_set_audio_stream_playing(musica_journey, false);
+            al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
             al_set_audio_stream_playing(musica_megaman, true);
             al_clear_to_color(al_map_rgb(255, 255, 255));
             al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
@@ -901,9 +902,7 @@ bool inicicializar_imagens()
 void inicializar_registradores_da_fila_de_eventos()
 {
     al_attach_audio_stream_to_mixer(musica_journey, al_get_default_mixer());
-    al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
     al_set_audio_stream_playing(musica_journey, true);
-    al_set_audio_stream_playing(musica_megaman, false);
 
     // Comandos para dizer a "fila de eventos" registrar ações do Display e Teclado.
     al_register_event_source(fila_eventos, al_get_display_event_source(janela_inicial));
