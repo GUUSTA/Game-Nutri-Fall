@@ -44,6 +44,10 @@ ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Vermelho = NULL;
 
 ALLEGRO_BITMAP *imagem_Fruta_Manga = NULL;
 
+ALLEGRO_BITMAP *imagem_Tela_Fase_1 = NULL;
+
+ALLEGRO_BITMAP *imagem_como_jogar = NULL;
+
 
 //Fila de eventos, ela vai receber as ações do "usuário/programa".
 ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
@@ -467,10 +471,10 @@ int main(void)
         ===================*/
         if(tecla == 2)
         {
+            al_draw_bitmap(imagem_Tela_Fase_1 , 0, 0, 0);
             al_set_audio_stream_playing(musica_journey, false);
             al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
             al_set_audio_stream_playing(musica_megaman, true);
-            al_clear_to_color(al_map_rgb(255, 255, 255));
             al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
             al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
 
@@ -893,6 +897,22 @@ bool inicicializar_imagens()
         inicializar_destroy_all();
         return false;
     }
+
+    imagem_Tela_Fase_1 = al_load_bitmap("Tela_Fase_1.png");
+    if (!imagem_Tela_Fase_1)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Tela_Fase_1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_como_jogar = al_load_bitmap("como_jogar.png");
+    if (!imagem_como_jogar)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_como_jogar\n");
+        inicializar_destroy_all();
+        return false;
+    }
 }
 
 /*=====================================
@@ -943,6 +963,8 @@ void inicializar_destroy_all()
     al_destroy_bitmap(imagem_Iniciar_Jogo_Branco);
     al_destroy_bitmap(imagem_Iniciar_Jogo_Vermelho);
     al_destroy_bitmap(imagem_Fruta_Manga);
+    al_destroy_bitmap(imagem_Tela_Fase_1);
+    al_destroy_bitmap(imagem_como_jogar);
 
 
     al_destroy_audio_stream(musica_journey);
