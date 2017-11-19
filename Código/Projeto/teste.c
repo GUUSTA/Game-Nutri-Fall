@@ -79,6 +79,7 @@ int frame = 0;
 int i = 0;
 int dificuldade = 0;
 double velocidade = 0.0;
+int fruta = 0;
 
 //Double utilizada para o cálculo do tempo de atualização da tela
 double tempoInicial = 0;
@@ -98,10 +99,10 @@ int main(void)
 {
     float x = 585;
     float y = -100;
-    float raio = 50.0;
-    float tam_fruta = 2*raio;
     int dir_x = 0;
     int dir_y = 1;
+    float raio = 50.0;
+    float tam_fruta = 2*raio;
 
     inicicializar_comandos();
     inicicializar_imagens();
@@ -484,37 +485,172 @@ int main(void)
                 al_set_audio_stream_playing(musica_journey, false);
                 al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
                 al_set_audio_stream_playing(musica_megaman, true);
-                //al_draw_bitmap(imagem_Plataforma_down_down, 0, 0, 0);
-                //al_draw_bitmap(imagem_Plataforma_top_down, 0, 0, 0);
-                al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
-                al_flip_display();
 
 
-                velocidade = 2.0;
-                y += velocidade * dir_y;
-                x += velocidade * dir_x;
-
-                if(y < 230 + tam_fruta)
+                switch (fruta)
                 {
-                    dir_x = 0;
-                    dir_y = 1;
-                }
-                else if(y > 230 + tam_fruta)
-                {
-                    dir_y = 0;
-                    if(top == 1)
-                    {
-                        dir_x = -1;
-                    }
-                    else if(top == 2)
-                    {
-                        dir_x = 1;
-                    }
-                    else if(top == 0)
+                    case 0:
+
+                    al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
+                    al_flip_display();
+
+
+                    velocidade = 2.0;
+                    y += velocidade * dir_y;
+                    x += velocidade * dir_x;
+
+                    if(y < 230 + tam_fruta)
                     {
                         dir_x = 0;
+                        dir_y = 1;
+                    }
+                    else if(y > 230 + tam_fruta)
+                    {
+                        dir_y = 0;
+                        if(top == 1)
+                        {
+                            dir_x = -1;
+                        }
+                        else if(top == 2)
+                        {
+                            dir_x = 1;
+                        }
+                        else if(top == 0)
+                        {
+                            dir_x = 0;
+                        }
+                    }
+                    if(x > 1280 || x < 0)
+                    {
+                        fruta++;
+                        x = 585;
+                        y = -100;
+                        dir_x = 0;
+                        dir_y = 1;
+                        velocidade = 0.0;
+                    }
+
+                    case 1:
+
+                    al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
+                    al_flip_display();
+
+                    velocidade = 2.0;
+                    y += velocidade * dir_y;
+                    x += velocidade * dir_x;
+
+                    if(y < 230 + tam_fruta)
+                    {
+                        dir_x = 0;
+                        dir_y = 1;
+                    }
+                    else if(y > 230 + tam_fruta)
+                    {
+                        dir_y = 0;
+                        if(top == 1)
+                        {
+                            dir_x = -1;
+                        }
+                        else if(top == 2)
+                        {
+                            dir_x = 1;
+                        }
+                        else if(top == 0)
+                        {
+                            dir_x = 0;
+                        }
+                    }
+                    if(x > 1280 || x < 0)
+                    {
+                        fruta++;
+                        x = 585;
+                        y = -100;
+                        dir_x = 0;
+                        dir_y = 1;
+                        velocidade = 0.0;
+                    }
+
+                    case 2:
+
+                    al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
+                    al_flip_display();
+
+                    velocidade = 2.0;
+                    y += velocidade * dir_y;
+                    x += velocidade * dir_x;
+
+                    if(y < 230 + tam_fruta)
+                    {
+                        dir_x = 0;
+                        dir_y = 1;
+                    }
+                    else if(y > 230 + tam_fruta)
+                    {
+                        dir_y = 0;
+                        if(top == 1)
+                        {
+                            dir_x = -1;
+                        }
+                        else if(top == 2)
+                        {
+                            dir_x = 1;
+                        }
+                        else if(top == 0)
+                        {
+                            dir_x = 0;
+                        }
+                    }
+                    if(x > 1280 || x < 0)
+                    {
+                        fruta++;
+                        x = 585;
+                        y = -100;
+                        dir_x = 0;
+                        dir_y = 1;
+                        velocidade = 0.0;
+                    }
+
+                    case 3:
+
+                    al_draw_bitmap(imagem_Fruta_Manga, x, y, 0);
+                    al_flip_display();
+
+                    velocidade = 2.0;
+                    y += velocidade * dir_y;
+                    x += velocidade * dir_x;
+
+                    if(y < 230 + tam_fruta)
+                    {
+                        dir_x = 0;
+                        dir_y = 1;
+                    }
+                    else if(y > 230 + tam_fruta)
+                    {
+                        dir_y = 0;
+                        if(top == 1)
+                        {
+                            dir_x = -1;
+                        }
+                        else if(top == 2)
+                        {
+                            dir_x = 1;
+                        }
+                        else if(top == 0)
+                        {
+                            dir_x = 0;
+                        }
+                    }
+                    if(x > 1280 || x < 0)
+                    {
+                        fruta++;
+                        x = 585;
+                        y = -100;
+                        dir_x = 0;
+                        dir_y = 1;
+                        velocidade = 0.0;
                     }
                 }
+
             }
 
             else if(dificuldade == 2)
