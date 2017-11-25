@@ -41,15 +41,10 @@ ALLEGRO_BITMAP *imagem_Plataforma_down_right = NULL;
 ALLEGRO_BITMAP *imagem_Plataforma_down_left = NULL;
 ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Branco = NULL;
 ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Vermelho = NULL;
-
-ALLEGRO_BITMAP *imagem_Fruta_Manga = NULL;
-
 ALLEGRO_BITMAP *imagem_Tela_Fase_1 = NULL;
-
 ALLEGRO_BITMAP *imagem_como_jogar = NULL;
 
-
-ALLEGRO_BITMAP *fruit[10] = {*imagem_Fruta_Manga, *imagem_Fruta_Manga, *imagem_Fruta_Manga, *imagem_Fruta_Manga, *imagem_Fruta_Manga, *imagem_Fruta_Manga, *imagem_Fruta_Manga, *imagem_Fruta_Manga, *imagem_Fruta_Manga, *imagem_Fruta_Manga};
+ALLEGRO_BITMAP *arrayFrutas[10];
 
 
 //Fila de eventos, ela vai receber as ações do "usuário/programa".
@@ -494,9 +489,10 @@ int main(void)
                 al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
                 al_set_audio_stream_playing(musica_megaman, true);
 
-                while(sair == false && fruta <= 9) {
+                
+                for(fruta=0; fruta < 10; fruta++) {
 
-                    al_draw_bitmap(fruit[j], x, y, 0);
+                    al_draw_bitmap(arrayFrutas[j], x, y, 0);
                     al_flip_display();
 
                     y += velocidade * dir_y;
@@ -529,7 +525,6 @@ int main(void)
                         y = -100;
                         dir_x = 0;
                         dir_y = 1;
-                        fruta += 1;
                         j += 1;
                     }
                 }
@@ -1272,11 +1267,6 @@ bool inicicializar_imagens()
         return false;
     }
 
-    /*
-    int fruit[10] = [imagem_Fruta_Manga, ]
-    */
-
-
     imagem_opcoes = al_load_bitmap("Tela_Opcoes3.0.png");
     if (!imagem_opcoes)
     {
@@ -1405,10 +1395,90 @@ bool inicicializar_imagens()
         return false;
     }
 
-    imagem_Fruta_Manga = al_load_bitmap("Manga2.png");
-    if (!imagem_Fruta_Manga)
+    arrayFrutas[0] = al_load_bitmap("ACenoura.1.png");
+    if (!arrayFrutas[0])
     {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Fruta_Manga\n");
+        fprintf(stderr, "Falha ao carregar o arquivo de ACenoura.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[1] = al_load_bitmap("Amanga.1.png");
+    if (!arrayFrutas[1])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de Amanga.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[2] = al_load_bitmap("ATomateA.1.png");
+    if (!arrayFrutas[2])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de ATomateA.1a\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[3] = al_load_bitmap("BAbacate.1.png");
+    if (!arrayFrutas[3])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de BAbacate.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[4] = al_load_bitmap("BBanana.1.png");
+    if (!arrayFrutas[4])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de BBanana.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[5] = al_load_bitmap("BOvo.1.png");
+    if (!arrayFrutas[5])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de BOvo.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[6] = al_load_bitmap("CBocolis.1.png");
+    if (!arrayFrutas[6])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de CBocolis.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[7] = al_load_bitmap("CLaranja.1.png");
+    if (!arrayFrutas[7])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de CLaranja.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[8] = al_load_bitmap("CMorango.1.png");
+    if (!arrayFrutas[8])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de CMorango.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[8] = al_load_bitmap("CMorango.1.png");
+    if (!arrayFrutas[8])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de CMorango.1\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    arrayFrutas[9] = al_load_bitmap("EAvelã.1.png");
+    if (!arrayFrutas[9])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de EAvelã.1\n");
         inicializar_destroy_all();
         return false;
     }
@@ -1477,7 +1547,6 @@ void inicializar_destroy_all()
     al_destroy_bitmap(imagem_Plataforma_top_right);
     al_destroy_bitmap(imagem_Iniciar_Jogo_Branco);
     al_destroy_bitmap(imagem_Iniciar_Jogo_Vermelho);
-    al_destroy_bitmap(imagem_Fruta_Manga);
     al_destroy_bitmap(imagem_Tela_Fase_1);
     al_destroy_bitmap(imagem_como_jogar);
 
