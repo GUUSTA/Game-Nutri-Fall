@@ -47,7 +47,7 @@ ALLEGRO_BITMAP *imagem_Tela_Fase_1 = NULL;
 ALLEGRO_BITMAP *imagem_como_jogar = NULL;
 
 ALLEGRO_BITMAP *arrayFrutas[10];
-
+ALLEGRO_BITMAP *imagem_bt_jogar[2];
 
 //Fila de eventos, ela vai receber as ações do "usuário/programa".
 ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
@@ -71,7 +71,8 @@ bool desafiante = false;
 bool Iniciar_Jogo = false;
 bool Iniciar_Jogo_Vermelho = false;
 bool limitado = true;
-
+bool jogar = false;
+bool bt_jogar_vermelho = false;
 int tecla = 0;
 int top = 1;
 int down = 2;
@@ -151,7 +152,7 @@ int main(void)
                     break;
 
                 }
-                if(tecla == 2)
+                if(tecla == 3)
                 {
                     switch(evento.keyboard.keycode)
                     {
@@ -479,12 +480,70 @@ int main(void)
                     tecla = 2;
                 }
             }
-        }
 
+            if(tecla == 2 && Iniciar_Jogo_Vermelho == true)
+            {
+                al_draw_bitmap(imagem_como_jogar , 0, 0, 0);
+
+                if(jogar == false)
+                {
+                    if (evento.type == ALLEGRO_EVENT_MOUSE_AXES ||ALLEGRO_EVENT_MOUSE_WARPED)
+                    {
+                        // Verificamos se ele está sobre a região da imagem habilitado
+                        if (evento.mouse.x >= 0 &&
+                            evento.mouse.x <= 1280 &&
+                            evento.mouse.y >= 0 &&
+                            evento.mouse.y <= 720)
+                        {
+                            jogar = false;
+                            bt_jogar_vermelho = false;
+                        }
+                    }
+
+                    if (evento.type == ALLEGRO_EVENT_MOUSE_AXES || ALLEGRO_EVENT_MOUSE_WARPED)
+                    {
+                        // Verificamos se ele está sobre a região da imagem habilitado
+                        if (evento.mouse.x >= 888 &&
+                            evento.mouse.x <= 1043 &&
+                            evento.mouse.y >= 583 &&
+                            evento.mouse.y <= 628)
+                        {
+                            jogar = false;
+                            bt_jogar_vermelho = true;
+                        }
+                    }
+
+                    if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP)
+                    {
+                        // Verificamos se ele está sobre a região da imagem habilitado
+                        if (evento.mouse.x >= 888 &&
+                            evento.mouse.x <= 1043 &&
+                            evento.mouse.y >= 583 &&
+                            evento.mouse.y <= 628)
+                        {
+                            jogar = true;
+                        }
+                    }
+                }
+
+                if(bt_jogar_vermelho == true)
+                {
+                    al_draw_bitmap(imagem_bt_jogar[1] , 0, 0, 0);
+                }
+                else if(bt_jogar_vermelho == false)
+                {
+                    al_draw_bitmap(imagem_bt_jogar[0] , 0, 0, 0);
+                }
+                if(jogar == true)
+                {
+                    tecla = 3;
+                }
+            }
+        }
         /*=================
         === Tela Fase 1 ===
         ===================*/
-        if(tecla == 2)
+        if(tecla == 3 && bt_jogar_vermelho == true)
         {
             if(dificuldade == 1 && velocidade == 2.0)
             {
@@ -900,7 +959,7 @@ int main(void)
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
-                
+
                 else if(fruta == 1)
                 {
                     if(j[1] == 0)
@@ -4868,7 +4927,7 @@ int main(void)
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
-                
+
                 else if(fruta == 1)
                 {
                     if(j[1] == 0)
@@ -8837,7 +8896,7 @@ int main(void)
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
-                
+
                 else if(fruta == 1)
                 {
                     if(j[1] == 0)
@@ -12769,6 +12828,21 @@ bool inicicializar_imagens()
     if (!imagem_como_jogar)
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_como_jogar\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_bt_jogar[0] = al_load_bitmap("bt_jogar_branco.png");
+    if (!imagem_bt_jogar[0])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_bt_jogar[0]\n");
+        inicializar_destroy_all();
+        return false;
+    }
+    imagem_bt_jogar[1] = al_load_bitmap("bt_jogar_vermelho.png");
+    if (!imagem_bt_jogar[1])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_bt_jogar[0]\n");
         inicializar_destroy_all();
         return false;
     }
