@@ -1475,10 +1475,10 @@ bool inicicializar_imagens()
         return false;
     }
 
-    arrayFrutas[9] = al_load_bitmap("EAvelã.1.png");
+    arrayFrutas[9] = al_load_bitmap("EAvela.1.png");
     if (!arrayFrutas[9])
     {
-        fprintf(stderr, "Falha ao carregar o arquivo de EAvelã.1\n");
+        fprintf(stderr, "Falha ao carregar o arquivo de EAvela.1\n");
         inicializar_destroy_all();
         return false;
     }
