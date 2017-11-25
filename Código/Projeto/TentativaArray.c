@@ -910,11 +910,12 @@ int main(void)
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
-                /*else if(fruta == 1)
+                
+                else if(fruta == 1)
                 {
-                    if(j == 0)
+                    if(j[1] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -950,9 +951,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[1] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -988,9 +989,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[1] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1026,9 +1027,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[1] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1064,9 +1065,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[1] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1102,9 +1103,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[1] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1140,9 +1141,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[1] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1178,9 +1179,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[1] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1216,9 +1217,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[1] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1254,9 +1255,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[1] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1308,9 +1309,9 @@ int main(void)
                 // ===================================================================================================================================================
                 else if(fruta == 2)
                 {
-                    if(j == 0)
+                    if(j[2] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1346,9 +1347,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[2] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1384,9 +1385,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[2] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1422,9 +1423,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[2] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1460,9 +1461,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[2] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1498,9 +1499,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[2] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1536,9 +1537,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[2] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1574,9 +1575,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[2] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1612,9 +1613,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[2] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1650,9 +1651,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[2] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1704,9 +1705,9 @@ int main(void)
                 // ===================================================================================================================================================
                 else if(fruta == 3)
                 {
-                    if(j == 0)
+                    if(j[3] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1742,9 +1743,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[3] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1780,9 +1781,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[3] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1818,9 +1819,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[3] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1856,9 +1857,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[3] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1894,9 +1895,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[3] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1932,9 +1933,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[3] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -1970,9 +1971,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[3] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2008,9 +2009,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[3] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2046,9 +2047,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[3] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2100,9 +2101,9 @@ int main(void)
                 // ===================================================================================================================================================
                 else if(fruta == 4)
                 {
-                    if(j == 0)
+                    if(j[4] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2138,9 +2139,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[4] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2176,9 +2177,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[4] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2214,9 +2215,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[4] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2252,9 +2253,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[4] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2290,9 +2291,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[4] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2328,9 +2329,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[4] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2366,9 +2367,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[4] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2404,9 +2405,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[4] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2442,9 +2443,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[4] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2496,9 +2497,9 @@ int main(void)
                 // ===================================================================================================================================================
                 else if(fruta == 5)
                 {
-                    if(j == 0)
+                    if(j[5] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2534,9 +2535,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[5] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2572,9 +2573,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[5] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2610,9 +2611,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[5] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2648,9 +2649,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[5] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2686,9 +2687,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[5] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2724,9 +2725,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[5] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2762,9 +2763,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[5] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2800,9 +2801,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[5] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2838,9 +2839,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[5] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2892,9 +2893,9 @@ int main(void)
                 // ===================================================================================================================================================
                 else if(fruta == 6)
                 {
-                    if(j == 0)
+                    if(j[6] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2930,9 +2931,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[6] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -2968,9 +2969,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[6] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3006,9 +3007,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[6] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3044,9 +3045,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[6] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3082,9 +3083,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[6] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3120,9 +3121,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[6] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3158,9 +3159,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[6] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3196,9 +3197,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[6] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3234,9 +3235,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[6] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3286,11 +3287,12 @@ int main(void)
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
+
                 else if(fruta == 7)
                 {
-                    if(j == 0)
+                    if(j[7] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3326,9 +3328,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[7] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3364,9 +3366,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[7] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3402,9 +3404,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[7] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3440,9 +3442,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[7] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3478,9 +3480,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[7] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3516,9 +3518,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[7] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3554,9 +3556,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[7] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3592,9 +3594,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[7] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3630,9 +3632,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[7] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3684,9 +3686,9 @@ int main(void)
                 // ===================================================================================================================================================
                 else if(fruta == 8)
                 {
-                    if(j == 0)
+                    if(j[8] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3722,9 +3724,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[8] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3760,9 +3762,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[8] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3798,9 +3800,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[8] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3836,9 +3838,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[8] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3874,9 +3876,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[8] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3912,9 +3914,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[8] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3950,9 +3952,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[8] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -3988,9 +3990,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[8] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4026,9 +4028,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[8] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4080,9 +4082,9 @@ int main(void)
                 // ===================================================================================================================================================
                 else if(fruta == 9)
                 {
-                    if(j == 0)
+                    if(j[9] == 0)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4118,9 +4120,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 1)
+                    else if (j[9] == 1)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4156,9 +4158,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 2)
+                    else if (j[9] == 2)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4194,9 +4196,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 3)
+                    else if (j[9] == 3)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4232,9 +4234,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 4)
+                    else if (j[9] == 4)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4270,9 +4272,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 5)
+                    else if (j[9] == 5)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4308,9 +4310,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 6)
+                    else if (j[9] == 6)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4346,9 +4348,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 7)
+                    else if (j[9] == 7)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4384,9 +4386,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 8)
+                    else if (j[9] == 8)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4422,9 +4424,9 @@ int main(void)
                             fruta += 1;
                         }
                     }
-                    else if (j == 9)
+                    else if (j[9] == 9)
                     {
-                        al_draw_bitmap(arrayFrutas[j], x, y, 0);
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
                         al_flip_display();
 
                         y += velocidade * dir_y;
@@ -4461,8 +4463,6 @@ int main(void)
                         }
                     }
                 }
-                */
-
             }
             /*
             else if(dificuldade == 3 && velocidade == 8.0)
