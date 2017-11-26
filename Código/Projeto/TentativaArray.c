@@ -45,6 +45,8 @@ ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Branco = NULL;
 ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Vermelho = NULL;
 ALLEGRO_BITMAP *imagem_Tela_Fase_1 = NULL;
 ALLEGRO_BITMAP *imagem_como_jogar = NULL;
+ALLEGRO_BITMAP *imagem_dutos = NULL;
+
 
 ALLEGRO_BITMAP *arrayFrutas[10];
 ALLEGRO_BITMAP *imagem_bt_jogar[2];
@@ -548,6 +550,7 @@ int main(void)
             if(dificuldade == 1 && velocidade == 2.0)
             {
                 al_draw_bitmap(imagem_Tela_Fase_1 , 0, 0, 0);
+                al_draw_bitmap(imagem_dutos , 0, 0, 0);
                 al_set_audio_stream_playing(musica_journey, false);
                 al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
                 al_set_audio_stream_playing(musica_megaman, true);
@@ -595,7 +598,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -633,7 +636,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -671,7 +674,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -709,7 +712,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -747,7 +750,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -785,7 +788,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -823,7 +826,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -861,7 +864,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -899,7 +902,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -937,7 +940,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -991,7 +994,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1029,7 +1032,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1067,7 +1070,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1105,7 +1108,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1143,7 +1146,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1181,7 +1184,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1219,7 +1222,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1257,7 +1260,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1295,7 +1298,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1333,7 +1336,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1387,7 +1390,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1425,7 +1428,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1463,7 +1466,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1501,7 +1504,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1539,7 +1542,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1577,7 +1580,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1615,7 +1618,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1653,7 +1656,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1691,7 +1694,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1729,7 +1732,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1783,7 +1786,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1821,7 +1824,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1859,7 +1862,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1897,7 +1900,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1935,7 +1938,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -1973,7 +1976,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2011,7 +2014,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2049,7 +2052,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2087,7 +2090,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2125,7 +2128,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2179,7 +2182,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2217,7 +2220,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2255,7 +2258,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2293,7 +2296,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2331,7 +2334,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2369,7 +2372,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2407,7 +2410,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2445,7 +2448,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2483,7 +2486,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2521,7 +2524,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2575,7 +2578,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2613,7 +2616,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2651,7 +2654,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2689,7 +2692,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2727,7 +2730,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2765,7 +2768,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2803,7 +2806,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2841,7 +2844,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2879,7 +2882,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2917,7 +2920,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -2971,7 +2974,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3009,7 +3012,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3047,7 +3050,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3085,7 +3088,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3123,7 +3126,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3161,7 +3164,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3199,7 +3202,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3237,7 +3240,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3275,7 +3278,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3313,7 +3316,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3368,7 +3371,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3406,7 +3409,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3444,7 +3447,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3482,7 +3485,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3520,7 +3523,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3558,7 +3561,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3596,7 +3599,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3634,7 +3637,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3672,7 +3675,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3710,7 +3713,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3764,7 +3767,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3802,7 +3805,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3840,7 +3843,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3878,7 +3881,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3916,7 +3919,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3954,7 +3957,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -3992,7 +3995,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4030,7 +4033,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4068,7 +4071,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4106,7 +4109,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4160,7 +4163,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4198,7 +4201,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4236,7 +4239,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4274,7 +4277,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4312,7 +4315,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4350,7 +4353,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4388,7 +4391,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4426,7 +4429,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4464,7 +4467,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4502,7 +4505,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4563,7 +4566,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4601,7 +4604,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4639,7 +4642,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4677,7 +4680,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4715,7 +4718,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4753,7 +4756,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4791,7 +4794,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4829,7 +4832,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4867,7 +4870,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4905,7 +4908,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4959,7 +4962,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -4997,7 +5000,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5035,7 +5038,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5073,7 +5076,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5111,7 +5114,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5149,7 +5152,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5187,7 +5190,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5225,7 +5228,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5263,7 +5266,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5301,7 +5304,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5355,7 +5358,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5393,7 +5396,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5431,7 +5434,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5469,7 +5472,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5507,7 +5510,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5545,7 +5548,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5583,7 +5586,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5621,7 +5624,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5659,7 +5662,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5697,7 +5700,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5751,7 +5754,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5789,7 +5792,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5827,7 +5830,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5865,7 +5868,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5903,7 +5906,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5941,7 +5944,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -5979,7 +5982,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6017,7 +6020,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6055,7 +6058,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6093,7 +6096,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6147,7 +6150,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6185,7 +6188,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6223,7 +6226,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6261,7 +6264,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6299,7 +6302,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6337,7 +6340,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6375,7 +6378,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6413,7 +6416,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6451,7 +6454,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6489,7 +6492,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6543,7 +6546,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6581,7 +6584,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6619,7 +6622,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6657,7 +6660,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6695,7 +6698,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6733,7 +6736,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6771,7 +6774,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6809,7 +6812,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6847,7 +6850,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6885,7 +6888,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6939,7 +6942,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -6977,7 +6980,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7015,7 +7018,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7053,7 +7056,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7091,7 +7094,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7129,7 +7132,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7167,7 +7170,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7205,7 +7208,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7243,7 +7246,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7281,7 +7284,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7336,7 +7339,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7374,7 +7377,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7412,7 +7415,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7450,7 +7453,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7488,7 +7491,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7526,7 +7529,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7564,7 +7567,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7602,7 +7605,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7640,7 +7643,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7678,7 +7681,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7732,7 +7735,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7770,7 +7773,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7808,7 +7811,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7846,7 +7849,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7884,7 +7887,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7922,7 +7925,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7960,7 +7963,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -7998,7 +8001,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8036,7 +8039,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8074,7 +8077,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8128,7 +8131,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8166,7 +8169,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8204,7 +8207,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8242,7 +8245,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8280,7 +8283,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8318,7 +8321,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8356,7 +8359,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8394,7 +8397,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8432,7 +8435,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8470,7 +8473,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8532,7 +8535,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8570,7 +8573,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8608,7 +8611,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8646,7 +8649,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8684,7 +8687,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8722,7 +8725,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8760,7 +8763,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8798,7 +8801,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8836,7 +8839,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8874,7 +8877,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8928,7 +8931,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -8966,7 +8969,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9004,7 +9007,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9042,7 +9045,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9080,7 +9083,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9118,7 +9121,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9156,7 +9159,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9194,7 +9197,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9232,7 +9235,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9270,7 +9273,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9324,7 +9327,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9362,7 +9365,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9400,7 +9403,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9438,7 +9441,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9476,7 +9479,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9514,7 +9517,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9552,7 +9555,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9590,7 +9593,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9628,7 +9631,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9666,7 +9669,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9720,7 +9723,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9758,7 +9761,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9796,7 +9799,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9834,7 +9837,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9872,7 +9875,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9910,7 +9913,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9948,7 +9951,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -9986,7 +9989,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10024,7 +10027,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10062,7 +10065,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10116,7 +10119,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10154,7 +10157,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10192,7 +10195,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10230,7 +10233,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10268,7 +10271,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10306,7 +10309,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10344,7 +10347,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10382,7 +10385,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10420,7 +10423,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10458,7 +10461,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10512,7 +10515,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10550,7 +10553,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10588,7 +10591,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10626,7 +10629,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10664,7 +10667,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10702,7 +10705,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10740,7 +10743,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10778,7 +10781,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10816,7 +10819,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10854,7 +10857,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10908,7 +10911,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10946,7 +10949,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -10984,7 +10987,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11022,7 +11025,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11060,7 +11063,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11098,7 +11101,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11136,7 +11139,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11174,7 +11177,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11212,7 +11215,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11250,7 +11253,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11305,7 +11308,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11343,7 +11346,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11381,7 +11384,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11419,7 +11422,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11457,7 +11460,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11495,7 +11498,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11533,7 +11536,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11571,7 +11574,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11609,7 +11612,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11647,7 +11650,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11701,7 +11704,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11739,7 +11742,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11777,7 +11780,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11815,7 +11818,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11853,7 +11856,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11891,7 +11894,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11929,7 +11932,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -11967,7 +11970,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12005,7 +12008,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12043,7 +12046,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12097,7 +12100,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12135,7 +12138,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12173,7 +12176,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12211,7 +12214,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12249,7 +12252,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12287,7 +12290,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12325,7 +12328,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12363,7 +12366,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12401,7 +12404,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12439,7 +12442,7 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1280 || x < 0)
+                        if(x > 1070 || x < 100)
                         {
                             x = 585;
                             y = -100;
@@ -12843,6 +12846,14 @@ bool inicicializar_imagens()
     if (!imagem_bt_jogar[1])
     {
         fprintf(stderr, "Falha ao carregar o arquivo de imagem_bt_jogar[0]\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_dutos = al_load_bitmap("dutos.png");
+    if (!imagem_dutos)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_dutos\n");
         inicializar_destroy_all();
         return false;
     }
