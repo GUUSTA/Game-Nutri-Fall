@@ -50,6 +50,11 @@ ALLEGRO_BITMAP *imagem_dutos = NULL;
 
 ALLEGRO_BITMAP *arrayFrutas[10];
 ALLEGRO_BITMAP *imagem_bt_jogar[2];
+ALLEGRO_BITMAP *imagem_suga_direita;
+ALLEGRO_BITMAP *imagem_suga_esquerda;
+ALLEGRO_BITMAP *imagem_Acerto[2];
+ALLEGRO_BITMAP *imagem_Erro[2];
+
 
 //Fila de eventos, ela vai receber as ações do "usuário/programa".
 ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
@@ -84,6 +89,8 @@ int j[10];
 int dificuldade = 0;
 double velocidade = 0.0;
 int fruta = 0;
+int anima_direita = 0;
+int anima_esquerda = 0;
 
 //Double utilizada para o cálculo do tempo de atualização da tela
 double tempoInicial = 0;
@@ -165,14 +172,6 @@ int main(void)
                         //seta para direita.
                         case ALLEGRO_KEY_RIGHT:
                             top = 2;
-                            break;
-                        //Tecla A
-                        case ALLEGRO_KEY_A:
-                            down = 1;
-                            break;
-                        //Tecla D
-                        case ALLEGRO_KEY_D:
-                            down = 2;
                             break;
                     }
                 }
@@ -551,9 +550,7 @@ int main(void)
             {
                 al_draw_bitmap(imagem_Tela_Fase_1 , 0, 0, 0);
                 al_draw_bitmap(imagem_dutos , 0, 0, 0);
-                al_set_audio_stream_playing(musica_journey, false);
-                al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
-                al_set_audio_stream_playing(musica_megaman, true);
+
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===============================================================       ==================================================================================
@@ -566,6 +563,1210 @@ int main(void)
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
+
+
+                switch(j[0])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[1])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[2])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[3])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[4])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[5])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[6])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[7])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[8])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                switch(j[9])
+                {
+                    case 0:
+
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 1:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 2:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 3:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 4:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 5:
+                        if(x > 1070)
+                        {
+                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        }
+
+                    case 6:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 7:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 8:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+
+                    case 9:
+                         if(x > 1065)
+                        {
+                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        }
+                        if(x < 110)
+                        {
+                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        }
+                }
+
+                /*if(j[0] == 0)
+                {
+                    if(x > 1070)
+                    {
+                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 1)
+                {
+                    if(x > 1070)
+                    {
+                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 2)
+                {
+                    if(x > 1070)
+                    {
+                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 3)
+                {
+                    if(x > 1070)
+                    {
+                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 4)
+                {
+                    if(x > 1070)
+                    {
+                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 5)
+                {
+                    if(x > 1070)
+                    {
+                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 6)
+                {
+                    if(x > 1065)
+                    {
+                       al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                       al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 7)
+                {
+                    if(x > 1065)
+                    {
+                       al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                       al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 8)
+                {
+                    if(x > 1065)
+                    {
+                       al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                       al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                    }
+                }
+                else if(j[0] == 9)
+                {
+                    if(x > 1065)
+                    {
+                       al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                    }
+                    else if(x < 110)
+                    {
+                       al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                    }
+                } */
+
+
+
+                if (sound_Melodia == true)
+                {
+                    al_set_audio_stream_playing(musica_journey, false);
+                    al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
+                    al_set_audio_stream_playing(musica_megaman, true);
+                }
+                else if(sound_Melodia)
+                {
+                    al_set_audio_stream_playing(musica_journey, false);
+                    al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
+                    al_set_audio_stream_playing(musica_megaman, false);
+                }
+
+                if(top == 1)
+                {
+                    if(anima_esquerda == 0)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, -10, 0, 0);
+                        anima_esquerda++;
+                    }
+                    else if (anima_esquerda == 1)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, 0, 0, 0);
+                        anima_esquerda++;
+                    }
+                    else if (anima_esquerda == 2)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, 10, 0, 0);
+                        anima_esquerda = 0;
+                    }
+                }
+                if(top == 2)
+                {
+                    if(anima_direita == 0)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, -10, 0, 0);
+                        anima_direita++;
+                    }
+                    else if (anima_direita == 1)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, 0, 0, 0);
+                        anima_direita++;
+                    }
+                    else if (anima_direita == 2)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, 10, 0, 0);
+                        anima_direita = 0;
+                    }
+                }
 
                 if(fruta == 0)
                 {
@@ -4519,6 +5720,7 @@ int main(void)
             else if(dificuldade == 2 && velocidade == 4.0)
             {
                 al_draw_bitmap(imagem_Tela_Fase_1 , 0, 0, 0);
+                al_draw_bitmap(imagem_dutos , 0, 0, 0);
                 al_set_audio_stream_playing(musica_journey, false);
                 al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
                 al_set_audio_stream_playing(musica_megaman, true);
@@ -4534,6 +5736,43 @@ int main(void)
                 // ===========================================                       ========================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
+
+                if(top == 1)
+                {
+                    if(anima_esquerda == 0)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, -10, 0, 0);
+                        anima_esquerda++;
+                    }
+                    else if (anima_esquerda == 1)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, 0, 0, 0);
+                        anima_esquerda++;
+                    }
+                    else if (anima_esquerda == 2)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, 10, 0, 0);
+                        anima_esquerda = 0;
+                    }
+                }
+                if(top == 2)
+                {
+                    if(anima_direita == 0)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, -10, 0, 0);
+                        anima_direita++;
+                    }
+                    else if (anima_direita == 1)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, 0, 0, 0);
+                        anima_direita++;
+                    }
+                    else if (anima_direita == 2)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, 10, 0, 0);
+                        anima_direita = 0;
+                    }
+                }
 
                 if(fruta == 0)
                 {
@@ -8488,6 +9727,7 @@ int main(void)
             else if(dificuldade == 3 && velocidade == 8.0)
             {
                 al_draw_bitmap(imagem_Tela_Fase_1 , 0, 0, 0);
+                al_draw_bitmap(imagem_dutos , 0, 0, 0);
                 al_set_audio_stream_playing(musica_journey, false);
                 al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
                 al_set_audio_stream_playing(musica_megaman, true);
@@ -8503,6 +9743,43 @@ int main(void)
                 // ===========================================                        ========================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
+
+                if(top == 1)
+                {
+                    if(anima_esquerda == 0)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, -10, 0, 0);
+                        anima_esquerda++;
+                    }
+                    else if (anima_esquerda == 1)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, 0, 0, 0);
+                        anima_esquerda++;
+                    }
+                    else if (anima_esquerda == 2)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, 10, 0, 0);
+                        anima_esquerda = 0;
+                    }
+                }
+                if(top == 2)
+                {
+                    if(anima_direita == 0)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, -10, 0, 0);
+                        anima_direita++;
+                    }
+                    else if (anima_direita == 1)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, 0, 0, 0);
+                        anima_direita++;
+                    }
+                    else if (anima_direita == 2)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, 10, 0, 0);
+                        anima_direita = 0;
+                    }
+                }
 
                 if(fruta == 0)
                 {
@@ -12857,6 +14134,56 @@ bool inicicializar_imagens()
         inicializar_destroy_all();
         return false;
     }
+
+    imagem_suga_esquerda = al_load_bitmap("friozinhoesquerdo.png");
+    if (!imagem_suga_esquerda)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de friozinhodireito\n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_suga_direita = al_load_bitmap("friozinhodireito.png");
+    if (!imagem_suga_direita)
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de imagem_suga_direita \n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_Acerto[0] = al_load_bitmap("yes_esquerdo.png");
+    if (!imagem_Acerto[0])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de yes_esquerdo \n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_Acerto[1] = al_load_bitmap("yes_direito.png");
+    if (!imagem_Acerto[1])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de yes_direito \n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_Erro[1] = al_load_bitmap("oops_direito.png");
+    if (!imagem_Erro[1])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de oops_direito \n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+    imagem_Erro[0] = al_load_bitmap("oops_esquerdo.png");
+    if (!imagem_Erro[0])
+    {
+        fprintf(stderr, "Falha ao carregar o arquivo de oops_esquerdo \n");
+        inicializar_destroy_all();
+        return false;
+    }
+
+
 }
 
 /*=====================================
