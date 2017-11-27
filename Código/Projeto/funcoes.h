@@ -542,6 +542,5 @@ void numeros_aleatorios()
      {
            /* gerando valores aleatórios entre zero e 9 */
            j[i] = rand() % 10;
-           printf("%d\n", j[i]);
      }
 }
