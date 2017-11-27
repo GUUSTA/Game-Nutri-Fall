@@ -11,98 +11,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <conio.h>
-
-/*===============================
-====== Variáveis Globais ========
-=================================*/
-// Atributos da tela
-const int LARGURA_TELA = 1280;
-const int ALTURA_TELA = 720;
-
-// Taxa de Frames utilizada
-int FRAMES_POR_SEGUNDO = 60;
-
-// A nossa variável janela
-ALLEGRO_DISPLAY *janela_inicial = NULL;
-
-// As nossas variáveis para imagens que irão aparecer
-ALLEGRO_BITMAP *imagem_inicial = NULL;
-ALLEGRO_BITMAP *imagem_opcoes = NULL;
-ALLEGRO_BITMAP *imagem_on_Melodia = NULL;
-ALLEGRO_BITMAP *imagem_off_Melodia = NULL;
-ALLEGRO_BITMAP *imagem_on_SFX = NULL;
-ALLEGRO_BITMAP *imagem_off_SFX = NULL;
-ALLEGRO_BITMAP *imagem_Iniciante = NULL;
-ALLEGRO_BITMAP *imagem_Normal = NULL;
-ALLEGRO_BITMAP *imagem_Desafiante = NULL;
-ALLEGRO_BITMAP *imagem_Plataforma_top_down = NULL;
-ALLEGRO_BITMAP *imagem_Plataforma_top_right = NULL;
-ALLEGRO_BITMAP *imagem_Plataforma_top_left = NULL;
-ALLEGRO_BITMAP *imagem_Plataforma_down_down = NULL;
-ALLEGRO_BITMAP *imagem_Plataforma_down_right = NULL;
-ALLEGRO_BITMAP *imagem_Plataforma_down_left = NULL;
-ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Branco = NULL;
-ALLEGRO_BITMAP *imagem_Iniciar_Jogo_Vermelho = NULL;
-ALLEGRO_BITMAP *imagem_Tela_Fase_1 = NULL;
-ALLEGRO_BITMAP *imagem_como_jogar = NULL;
-ALLEGRO_BITMAP *imagem_dutos = NULL;
-
-
-ALLEGRO_BITMAP *arrayFrutas[10];
-ALLEGRO_BITMAP *imagem_bt_jogar[2];
-ALLEGRO_BITMAP *imagem_suga_direita;
-ALLEGRO_BITMAP *imagem_suga_esquerda;
-ALLEGRO_BITMAP *imagem_Acerto[2];
-ALLEGRO_BITMAP *imagem_Erro[2];
-
-
-//Fila de eventos, ela vai receber as ações do "usuário/programa".
-ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
-
-// O nosso arquivo de fonte
-ALLEGRO_FONT *fonte28 = NULL;
-
-// Musica de fundo
-ALLEGRO_AUDIO_STREAM *musica_journey = NULL;
-ALLEGRO_AUDIO_STREAM *musica_megaman = NULL;
-
-
-
-// Variáveis auxiliares.
-bool sair = false;
-bool sound_Melodia = true;
-bool sound_SFX = true;
-bool iniciante = true;
-bool normal = false;
-bool desafiante = false;
-bool Iniciar_Jogo = false;
-bool Iniciar_Jogo_Vermelho = false;
-bool limitado = true;
-bool jogar = false;
-bool bt_jogar_vermelho = false;
-int tecla = 0;
-int top = 1;
-int down = 2;
-int frame = 0;
-int i = 0;
-int j[10];
-int dificuldade = 0;
-double velocidade = 0.0;
-int fruta = 0;
-int anima_direita = 0;
-int anima_esquerda = 0;
-
-//Double utilizada para o cálculo do tempo de atualização da tela
-double tempoInicial = 0;
-
-//Prototipando as funções
-bool inicicializar_comandos();
-bool inicicializar_imagens();
-void inicializar_registradores_da_fila_de_eventos();
-void inicializar_destroy_all();
-void iniciarTimer();
-double obterTempoTimer();
-void numeros_aleatorios();
+#include "funcoes.h"
 
 /*=====================
 ==== Início do Jogo ===
@@ -565,1158 +474,5055 @@ int main(void)
                 // ===================================================================================================================================================
 
 
-                switch(j[0])
+                if (sound_Melodia == true)
                 {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
+                    al_set_audio_stream_playing(musica_journey, false);
+                    al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
+                    al_set_audio_stream_playing(musica_megaman, true);
+                }
+                else if(sound_Melodia)
+                {
+                    al_set_audio_stream_playing(musica_journey, false);
+                    al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
+                    al_set_audio_stream_playing(musica_megaman, false);
                 }
 
-                switch(j[1])
+                if(top == 1)
                 {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                switch(j[2])
-                {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                switch(j[3])
-                {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                switch(j[4])
-                {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                switch(j[5])
-                {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                switch(j[6])
-                {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                switch(j[7])
-                {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                switch(j[8])
-                {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                switch(j[9])
-                {
-                    case 0:
-
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 1:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 2:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 3:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 4:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 5:
-                        if(x > 1070)
-                        {
-                           al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                            al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
-                        }
-
-                    case 6:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 7:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 8:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-
-                    case 9:
-                         if(x > 1065)
-                        {
-                           al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
-                        }
-                        if(x < 110)
-                        {
-                           al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
-                        }
-                }
-
-                /*if(j[0] == 0)
-                {
-                    if(x > 1070)
+                    if(anima_esquerda == 0)
                     {
-                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        al_draw_bitmap(imagem_suga_esquerda, -10, 0, 0);
+                        anima_esquerda++;
                     }
-                    else if(x < 110)
+                    else if (anima_esquerda == 1)
                     {
-                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        al_draw_bitmap(imagem_suga_esquerda, 0, 0, 0);
+                        anima_esquerda++;
+                    }
+                    else if (anima_esquerda == 2)
+                    {
+                        al_draw_bitmap(imagem_suga_esquerda, 10, 0, 0);
+                        anima_esquerda = 0;
                     }
                 }
-                else if(j[0] == 1)
+                if(top == 2)
                 {
-                    if(x > 1070)
+                    if(anima_direita == 0)
                     {
-                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        al_draw_bitmap(imagem_suga_direita, -10, 0, 0);
+                        anima_direita++;
                     }
-                    else if(x < 110)
+                    else if (anima_direita == 1)
                     {
-                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        al_draw_bitmap(imagem_suga_direita, 0, 0, 0);
+                        anima_direita++;
+                    }
+                    else if (anima_direita == 2)
+                    {
+                        al_draw_bitmap(imagem_suga_direita, 10, 0, 0);
+                        anima_direita = 0;
                     }
                 }
-                else if(j[0] == 2)
+
+                if(fruta == 0)
                 {
-                    if(x > 1070)
+                    if(j[0] == 0)
                     {
-                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                    else if(x < 110)
+                    else if (j[0] == 1)
                     {
-                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[0] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[0] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[0] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[0] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[0] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[0] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[0] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[0] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
                     }
                 }
-                else if(j[0] == 3)
+
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+
+                else if(fruta == 1)
                 {
-                    if(x > 1070)
+                    if(j[1] == 0)
                     {
-                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                    else if(x < 110)
+                    else if (j[1] == 1)
                     {
-                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[1] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[1] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[1] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[1] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[1] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[1] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[1] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[1] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
                     }
                 }
-                else if(j[0] == 4)
+
+               // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                else if(fruta == 2)
                 {
-                    if(x > 1070)
+                    if(j[2] == 0)
                     {
-                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                    else if(x < 110)
+                    else if (j[2] == 1)
                     {
-                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[2] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[2] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[2] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[2] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[2] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[2] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[2] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[2] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
                     }
                 }
-                else if(j[0] == 5)
+
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                else if(fruta == 3)
                 {
-                    if(x > 1070)
+                    if(j[3] == 0)
                     {
-                       al_draw_bitmap(imagem_Erro[1] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                    else if(x < 110)
+                    else if (j[3] == 1)
                     {
-                        al_draw_bitmap(imagem_Acerto[0] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[3] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[3] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[3] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[3] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[3] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[3] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[3] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[3] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
                     }
                 }
-                else if(j[0] == 6)
+
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                else if(fruta == 4)
                 {
-                    if(x > 1065)
+                    if(j[4] == 0)
                     {
-                       al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                    else if(x < 110)
+                    else if (j[4] == 1)
                     {
-                       al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[4] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[4] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[4] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[4] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[4] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[4] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[4] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[4] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
                     }
                 }
-                else if(j[0] == 7)
+
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                else if(fruta == 5)
                 {
-                    if(x > 1065)
+                    if(j[5] == 0)
                     {
-                       al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                    else if(x < 110)
+                    else if (j[5] == 1)
                     {
-                       al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[5] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[5] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[5] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[5] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[5] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[5] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[5] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[5] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
                     }
                 }
-                else if(j[0] == 8)
+
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                else if(fruta == 6)
                 {
-                    if(x > 1065)
+                    if(j[6] == 0)
                     {
-                       al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                    else if(x < 110)
+                    else if (j[6] == 1)
                     {
-                       al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[6] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[6] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[6] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[6] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[6] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[6] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[6] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[6] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
                     }
                 }
-                else if(j[0] == 9)
+
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+
+                else if(fruta == 7)
                 {
-                    if(x > 1065)
+                    if(j[7] == 0)
                     {
-                       al_draw_bitmap(imagem_Acerto[1] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                    else if(x < 110)
+                    else if (j[7] == 1)
                     {
-                       al_draw_bitmap(imagem_Erro[0] , 0, 0, 0);
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
                     }
-                } */
+                    else if (j[7] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[7] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[7] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[7] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[7] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[7] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[7] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[7] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                }
+
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                else if(fruta == 8)
+                {
+                    if(j[8] == 0)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[8] == 1)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[8] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[8] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[8] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[8] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                    }
+                    else if (j[8] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[8] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[8] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                    else if (j[8] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                        }
+                    }
+                }
+
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                else if(fruta == 9)
+                {
+                    if(j[9] == 0)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 1)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 2)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 3)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 4)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 5)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 6)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 7)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 8)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                    }
+                    else if (j[9] == 9)
+                    {
+                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
+                        al_flip_display();
+
+                        y += velocidade * dir_y;
+                        x += velocidade * dir_x;
+
+                        if(y < 230 + tam_fruta)
+                        {
+                            dir_x = 0;
+                            dir_y = 1;
+                        }
+                        else if(y > 230 + tam_fruta)
+                        {
+                            dir_y = 0;
+                            if(top == 1)
+                            {
+                                dir_x = -1;
+                            }
+                            else if(top == 2)
+                            {
+                                dir_x = 1;
+                            }
+                            else if(top == 0)
+                            {
+                                dir_x = 0;
+                            }
+                        }
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
+                        }
+                    }
+                }
+            }
 
 
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ====================================================                            =============================================================================================
+                // ============================================================================    =======================================================================
+                // ============================================================================    =======================================================================
+                // =====================================================                           ==============================================================================================
+                // =====================================================    =============================================================================================
+                // =====================================================    ==============================================================================================
+                // =====================================================                           ==================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+                // ===================================================================================================================================================
+
+            else if(dificuldade == 2 && velocidade == 4.0)
+            {
+                al_draw_bitmap(imagem_Tela_Fase_1 , 0, 0, 0);
+                al_draw_bitmap(imagem_dutos , 0, 0, 0);
 
                 if (sound_Melodia == true)
                 {
@@ -1799,13 +5605,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1070 || x < 110)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 1)
@@ -1837,13 +5653,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 2)
@@ -1875,13 +5701,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 3)
@@ -1913,13 +5749,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 4)
@@ -1951,13 +5797,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 5)
@@ -1988,14 +5844,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 6)
@@ -2027,7 +5894,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2065,7 +5942,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2103,7 +5990,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2141,7 +6038,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2151,6 +6058,7 @@ int main(void)
                         }
                     }
                 }
+
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
@@ -2195,13 +6103,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 1)
@@ -2233,13 +6151,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 2)
@@ -2271,13 +6199,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 3)
@@ -2309,13 +6247,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 4)
@@ -2347,13 +6295,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 5)
@@ -2384,14 +6342,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 6)
@@ -2423,7 +6392,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2461,7 +6440,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2499,7 +6488,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2537,7 +6536,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2591,13 +6600,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 1)
@@ -2629,13 +6648,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 2)
@@ -2667,13 +6696,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 3)
@@ -2705,13 +6744,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 4)
@@ -2743,13 +6792,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 5)
@@ -2780,14 +6839,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 6)
@@ -2819,7 +6889,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2857,7 +6937,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2895,7 +6985,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2933,7 +7033,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -2987,13 +7097,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 1)
@@ -3025,13 +7145,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 2)
@@ -3063,13 +7193,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 3)
@@ -3101,13 +7241,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 4)
@@ -3139,13 +7289,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 5)
@@ -3176,14 +7336,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 6)
@@ -3215,7 +7386,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -3253,7 +7434,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -3291,7 +7482,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -3329,7 +7530,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -3383,13 +7594,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 1)
@@ -3421,13 +7642,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 2)
@@ -3459,13 +7690,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 3)
@@ -3497,13 +7738,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 4)
@@ -3535,13 +7786,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 5)
@@ -3572,14 +7833,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 6)
@@ -3611,7 +7883,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -3649,7 +7931,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -3687,7 +7979,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -3725,7 +8027,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -3779,13 +8091,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 1)
@@ -3817,13 +8139,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 2)
@@ -3855,13 +8187,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 3)
@@ -3893,13 +8235,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 4)
@@ -3931,13 +8283,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 5)
@@ -3968,14 +8330,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 6)
@@ -4007,7 +8380,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4045,7 +8428,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4083,7 +8476,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4121,7 +8524,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4175,13 +8588,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 1)
@@ -4213,13 +8636,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 2)
@@ -4251,13 +8684,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 3)
@@ -4289,13 +8732,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 4)
@@ -4327,13 +8780,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 5)
@@ -4364,14 +8827,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 6)
@@ -4403,7 +8877,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4441,7 +8925,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4479,7 +8973,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4517,7 +9021,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4572,13 +9086,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 1)
@@ -4610,13 +9134,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 2)
@@ -4648,13 +9182,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 3)
@@ -4686,13 +9230,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 4)
@@ -4724,13 +9278,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 5)
@@ -4761,14 +9325,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 6)
@@ -4800,7 +9375,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4838,7 +9423,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4876,7 +9471,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4914,7 +9519,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -4968,13 +9583,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 1)
@@ -5006,13 +9631,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 2)
@@ -5044,13 +9679,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 3)
@@ -5082,13 +9727,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 4)
@@ -5120,13 +9775,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 5)
@@ -5157,14 +9822,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 6)
@@ -5196,7 +9872,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -5234,7 +9920,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -5272,7 +9968,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -5310,7 +10016,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -5364,13 +10080,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 1)
@@ -5402,13 +10130,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 2)
@@ -5440,13 +10180,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 3)
@@ -5478,13 +10230,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 4)
@@ -5516,13 +10280,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 5)
@@ -5553,14 +10329,27 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 6)
@@ -5592,13 +10381,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 7)
@@ -5630,13 +10431,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 8)
@@ -5668,13 +10481,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 9)
@@ -5706,4043 +10531,60 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
                         }
                     }
                 }
             }
-            else if(dificuldade == 2 && velocidade == 4.0)
-            {
-                al_draw_bitmap(imagem_Tela_Fase_1 , 0, 0, 0);
-                al_draw_bitmap(imagem_dutos , 0, 0, 0);
-                al_set_audio_stream_playing(musica_journey, false);
-                al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
-                al_set_audio_stream_playing(musica_megaman, true);
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // =========================================                         ==========================================================================================================
-                // =============================================================     ======================================================================================
-                // =============================================================     ======================================================================================
-                // =============================================================     ======================================================================================
-                // ===========================================                       ========================================================================================================
-                // ===========================================    ========================================================================================================
-                // ===========================================    ========================================================================================================
-                // ===========================================                       ========================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-
-                if(top == 1)
-                {
-                    if(anima_esquerda == 0)
-                    {
-                        al_draw_bitmap(imagem_suga_esquerda, -10, 0, 0);
-                        anima_esquerda++;
-                    }
-                    else if (anima_esquerda == 1)
-                    {
-                        al_draw_bitmap(imagem_suga_esquerda, 0, 0, 0);
-                        anima_esquerda++;
-                    }
-                    else if (anima_esquerda == 2)
-                    {
-                        al_draw_bitmap(imagem_suga_esquerda, 10, 0, 0);
-                        anima_esquerda = 0;
-                    }
-                }
-                if(top == 2)
-                {
-                    if(anima_direita == 0)
-                    {
-                        al_draw_bitmap(imagem_suga_direita, -10, 0, 0);
-                        anima_direita++;
-                    }
-                    else if (anima_direita == 1)
-                    {
-                        al_draw_bitmap(imagem_suga_direita, 0, 0, 0);
-                        anima_direita++;
-                    }
-                    else if (anima_direita == 2)
-                    {
-                        al_draw_bitmap(imagem_suga_direita, 10, 0, 0);
-                        anima_direita = 0;
-                    }
-                }
-
-                if(fruta == 0)
-                {
-                    if(j[0] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[0] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[0]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-
-                else if(fruta == 1)
-                {
-                    if(j[1] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[1] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[1]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-
-               // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                else if(fruta == 2)
-                {
-                    if(j[2] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[2] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[2]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                else if(fruta == 3)
-                {
-                    if(j[3] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[3] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[3]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                else if(fruta == 4)
-                {
-                    if(j[4] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[4] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[4]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                else if(fruta == 5)
-                {
-                    if(j[5] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[5] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[5]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                else if(fruta == 6)
-                {
-                    if(j[6] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[6] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[6]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-
-                else if(fruta == 7)
-                {
-                    if(j[7] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
 
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[7] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[7]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                else if(fruta == 8)
-                {
-                    if(j[8] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[8] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[8]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
+                // =====================================================                           =============================================================================================
+                // ============================================================================    =======================================================================
+                // ============================================================================    =======================================================================
+                // =====================================================                           ==============================================================================================
+                // ============================================================================    =========================================================================
+                // ============================================================================    ===========================================================================
+                // =====================================================                           ==================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
-                else if(fruta == 9)
-                {
-                    if(j[9] == 0)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 1)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 2)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 3)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 4)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 5)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 6)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 7)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 8)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                    else if (j[9] == 9)
-                    {
-                        al_draw_bitmap(arrayFrutas[j[9]], x, y, 0);
-                        al_flip_display();
-
-                        y += velocidade * dir_y;
-                        x += velocidade * dir_x;
-
-                        if(y < 230 + tam_fruta)
-                        {
-                            dir_x = 0;
-                            dir_y = 1;
-                        }
-                        else if(y > 230 + tam_fruta)
-                        {
-                            dir_y = 0;
-                            if(top == 1)
-                            {
-                                dir_x = -1;
-                            }
-                            else if(top == 2)
-                            {
-                                dir_x = 1;
-                            }
-                            else if(top == 0)
-                            {
-                                dir_x = 0;
-                            }
-                        }
-                        if(x > 1055 || x < 100)
-                        {
-                            x = 585;
-                            y = -100;
-                            dir_x = 0;
-                            dir_y = 1;
-                            fruta += 1;
-                        }
-                    }
-                }
-            }
 
             else if(dificuldade == 3 && velocidade == 8.0)
             {
                 al_draw_bitmap(imagem_Tela_Fase_1 , 0, 0, 0);
                 al_draw_bitmap(imagem_dutos , 0, 0, 0);
-                al_set_audio_stream_playing(musica_journey, false);
-                al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
-                al_set_audio_stream_playing(musica_megaman, true);
-                // ===================================================================================================================================================
-                // ============================================                       =======================================================================================================
-                // ============================================                       ===============================================================================================
-                // =============================================================      =====================================================================================
-                // ============================================                       =======================================================================================================
-                // ============================================                       =======================================================================================================
-                // =============================================================      ========================================================================================================
-                // =============================================================      =====================================================================================
-                // ===========================================                        =====================================================================================
-                // ===========================================                        ========================================================================================================
-                // ===================================================================================================================================================
-                // ===================================================================================================================================================
+
+                if (sound_Melodia == true)
+                {
+                    al_set_audio_stream_playing(musica_journey, false);
+                    al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
+                    al_set_audio_stream_playing(musica_megaman, true);
+                }
+                else if(sound_Melodia)
+                {
+                    al_set_audio_stream_playing(musica_journey, false);
+                    al_attach_audio_stream_to_mixer(musica_megaman, al_get_default_mixer());
+                    al_set_audio_stream_playing(musica_megaman, false);
+                }
 
                 if(top == 1)
                 {
@@ -9812,13 +10654,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 1)
@@ -9850,13 +10702,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 2)
@@ -9888,13 +10750,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 3)
@@ -9926,13 +10798,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 4)
@@ -9964,13 +10846,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 5)
@@ -10001,14 +10893,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[0] == 6)
@@ -10040,7 +10943,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10078,7 +10991,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10116,7 +11039,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10154,7 +11087,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10164,6 +11107,7 @@ int main(void)
                         }
                     }
                 }
+
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
                 // ===================================================================================================================================================
@@ -10208,13 +11152,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 1)
@@ -10246,13 +11200,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 2)
@@ -10284,13 +11248,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 3)
@@ -10322,13 +11296,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 4)
@@ -10360,13 +11344,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 5)
@@ -10397,14 +11391,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[1] == 6)
@@ -10436,7 +11441,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10474,7 +11489,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10512,7 +11537,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10550,7 +11585,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10604,13 +11649,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 1)
@@ -10642,13 +11697,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 2)
@@ -10680,13 +11745,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 3)
@@ -10718,13 +11793,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 4)
@@ -10756,13 +11841,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 5)
@@ -10793,14 +11888,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[2] == 6)
@@ -10832,7 +11938,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10870,7 +11986,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10908,7 +12034,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -10946,7 +12082,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11000,13 +12146,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 1)
@@ -11038,13 +12194,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 2)
@@ -11076,13 +12242,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 3)
@@ -11114,13 +12290,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 4)
@@ -11152,13 +12338,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 5)
@@ -11189,14 +12385,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[3] == 6)
@@ -11228,7 +12435,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11266,7 +12483,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11304,7 +12531,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11342,7 +12579,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11396,13 +12643,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 1)
@@ -11434,13 +12691,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 2)
@@ -11472,13 +12739,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 3)
@@ -11510,13 +12787,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 4)
@@ -11548,13 +12835,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 5)
@@ -11585,14 +12882,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[4] == 6)
@@ -11624,7 +12932,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11662,7 +12980,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11700,7 +13028,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11738,7 +13076,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -11792,13 +13140,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 1)
@@ -11830,13 +13188,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 2)
@@ -11868,13 +13236,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 3)
@@ -11906,13 +13284,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 4)
@@ -11944,13 +13332,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 5)
@@ -11981,14 +13379,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[5] == 6)
@@ -12020,7 +13429,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12058,7 +13477,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12096,7 +13525,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12134,7 +13573,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12188,13 +13637,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 1)
@@ -12226,13 +13685,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 2)
@@ -12264,13 +13733,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 3)
@@ -12302,13 +13781,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 4)
@@ -12340,13 +13829,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 5)
@@ -12377,14 +13876,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[6] == 6)
@@ -12416,7 +13926,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12454,7 +13974,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12492,7 +14022,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12530,7 +14070,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12585,13 +14135,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 1)
@@ -12623,13 +14183,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 2)
@@ -12661,13 +14231,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 3)
@@ -12699,13 +14279,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 4)
@@ -12737,13 +14327,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 5)
@@ -12774,14 +14374,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[7] == 6)
@@ -12813,7 +14424,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12851,7 +14472,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12889,7 +14520,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12927,7 +14568,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -12981,13 +14632,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 1)
@@ -13019,13 +14680,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 2)
@@ -13057,13 +14728,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 3)
@@ -13095,13 +14776,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 4)
@@ -13133,13 +14824,23 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 5)
@@ -13170,14 +14871,25 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
                         }
                     }
                     else if (j[8] == 6)
@@ -13209,7 +14921,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -13247,7 +14969,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -13285,7 +15017,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -13323,7 +15065,17 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                        }
+                        else if(x < 110)
                         {
                             x = 585;
                             y = -100;
@@ -13377,13 +15129,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 1)
@@ -13415,13 +15179,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 2)
@@ -13453,13 +15229,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 3)
@@ -13491,13 +15279,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 4)
@@ -13529,13 +15329,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 5)
@@ -13566,14 +15378,27 @@ int main(void)
                             {
                                 dir_x = 0;
                             }
+
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 6)
@@ -13605,13 +15430,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 7)
@@ -13643,13 +15480,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 8)
@@ -13681,13 +15530,25 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
                         }
                     }
                     else if (j[9] == 9)
@@ -13719,17 +15580,35 @@ int main(void)
                                 dir_x = 0;
                             }
                         }
-                        if(x > 1055 || x < 100)
+
+                        if(x > 1070)
                         {
                             x = 585;
                             y = -100;
                             dir_x = 0;
                             dir_y = 1;
                             fruta += 1;
+                            pontos += 1;
+                            tecla = 4;
+                        }
+                        else if(x < 110)
+                        {
+                            x = 585;
+                            y = -100;
+                            dir_x = 0;
+                            dir_y = 1;
+                            fruta += 1;
+                            tecla = 4;
                         }
                     }
                 }
             }
+        }
+
+        if(tecla == 4)
+        {
+            al_draw_bitmap(imagem_tela_final, 0, 0, 0);
+            al_draw_textf(fonte36, al_map_rgb(255, 255, 255), LARGURA_TELA / 2, 168, ALLEGRO_ALIGN_CENTRE, "Você acertou  %d/10 e obteve %d Pontos!",  pontos, 100*pontos);
         }
 
         frame++;
@@ -13746,517 +15625,4 @@ int main(void)
     inicializar_destroy_all();
 
     return 0;
-}
-
-/*===============================
-==== Inicizalização/Instalação ==
-====== de alguns comandos =======
-=================================*/
-bool inicicializar_comandos()
-{
-    // Inicialização da biblioteca Allegro
-    if (!al_init())
-    {
-        fprintf(stderr, "Falha ao inicializar a Allegro.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    // Inicialização do add-on para uso de fontes
-    al_init_font_addon();
-    al_init_ttf_addon();
-
-    // Inicialização do add-on para uso de fontes True Type(Fontes do instaladas no PC).
-    if (!al_init_image_addon())
-    {
-        fprintf(stderr, "Falha ao inicializar add-on allegro_image.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    // Cria nosso Display, e verifica se está tudo certo.
-    janela_inicial = al_create_display(LARGURA_TELA, ALTURA_TELA);
-    if (!janela_inicial)
-    {
-        fprintf(stderr, "Falha ao criar janela_inicial.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    // Configura o título da janela
-    al_set_window_title(janela_inicial, "Nutri Fall");
-
-    // Torna apto o uso de mouse na aplicação
-    if (!al_install_mouse())
-    {
-        fprintf(stderr, "Falha ao inicializar o mouse.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    // Atribui o cursor padrão do sistema para ser usado
-    if (!al_set_system_mouse_cursor(janela_inicial, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT))
-    {
-        fprintf(stderr, "Falha ao atribuir ponteiro do mouse.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    // Inicializa o teclado para uso.
-    if (!al_install_keyboard())
-    {
-        fprintf(stderr, "Falha ao inicializar Teclado.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    // Carregando o arquivo de fonte.
-    fonte28 = al_load_font("old_stamper.ttf", 28, 0);
-    if (!fonte28)
-    {
-        fprintf(stderr, "Falha ao carregar fonte28.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    if (!al_install_audio())
-    {
-        fprintf(stderr, "Falha ao inicializar áudio.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    if (!al_init_acodec_addon())
-    {
-        fprintf(stderr, "Falha ao inicializar codecs de áudio.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    if (!al_reserve_samples(1))
-    {
-        fprintf(stderr, "Falha ao alocar canais de áudio.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    musica_journey = al_load_audio_stream("musica Journey.ogg", 4, 1024);
-    if (!musica_journey)
-    {
-        fprintf(stderr, "Falha ao carregar audio -  musica Journey.ogg.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    musica_megaman = al_load_audio_stream("musica Megaman.ogg", 4, 1024);
-    if (!musica_megaman)
-    {
-        fprintf(stderr, "Falha ao carregar audio -  musica Megaman.ogg.ogg.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    // Cria nossa fila de eventos, e verifica se está tudo certo.
-    fila_eventos = al_create_event_queue();
-    if (!fila_eventos)
-    {
-        fprintf(stderr, "Falha ao criar fila de eventos.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-}
-
-/*===============================
-==== Inicialização de Imagens ===
-=================================*/
-bool inicicializar_imagens()
-{
-    // Carrega nosso background, e verifica se está tudo certo.
-    imagem_inicial = al_load_bitmap("Tela-inicial.png");
-    if (!imagem_inicial)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_inicial.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_opcoes = al_load_bitmap("Tela_Opcoes3.0.png");
-    if (!imagem_opcoes)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_opcoes.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_on_Melodia = al_load_bitmap("melodia-on.png");
-    if (!imagem_on_Melodia)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_on_Melodia.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_off_Melodia = al_load_bitmap("melodia-off.png");
-    if (!imagem_off_Melodia)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_off_Melodia.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_on_SFX = al_load_bitmap("sfx-on.png");
-    if (!imagem_on_SFX)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_on_SFX.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_off_SFX = al_load_bitmap("sfx-off.png");
-    if (!imagem_off_SFX)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_off_SFX.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Iniciante = al_load_bitmap("Dificuldade_Iniciante.png");
-    if (!imagem_Iniciante)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciante.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Normal = al_load_bitmap("Dificuldade_Normal.png");
-    if (!imagem_Normal)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Normal.\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Desafiante = al_load_bitmap("Dificuldade_Desafiante.png");
-    if (!imagem_Desafiante)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Desafiante\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Plataforma_down_down = al_load_bitmap("Plataforma_down_down.png");
-    if (!imagem_Plataforma_down_down)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_down\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Plataforma_down_left = al_load_bitmap("Plataforma_down_left.png");
-    if (!imagem_Plataforma_down_left)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_left\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Plataforma_down_right = al_load_bitmap("Plataforma_down_right.png");
-    if (!imagem_Plataforma_down_right)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_down_right\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Plataforma_top_down = al_load_bitmap("Plataforma_top_down.png");
-    if (!imagem_Plataforma_top_down)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_down\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Plataforma_top_left = al_load_bitmap("Plataforma_top_left.png");
-    if (!imagem_Plataforma_top_left)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_left\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Plataforma_top_right = al_load_bitmap("Plataforma_top_right.png");
-    if (!imagem_Plataforma_top_right)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Plataforma_top_right\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Iniciar_Jogo_Branco = al_load_bitmap("Iniciar_Jogo_Branco.png");
-    if (!imagem_Iniciar_Jogo_Branco)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciar_Jogo_Branco\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Iniciar_Jogo_Vermelho = al_load_bitmap("Iniciar_Jogo_Vermelho.png");
-    if (!imagem_Iniciar_Jogo_Vermelho)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Iniciar_Jogo_Vermelho\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[0] = al_load_bitmap("ACenoura.1.png");
-    if (!arrayFrutas[0])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de ACenoura.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[1] = al_load_bitmap("Amanga.1.png");
-    if (!arrayFrutas[1])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de Amanga.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[2] = al_load_bitmap("ATomateA.1.png");
-    if (!arrayFrutas[2])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de ATomateA.1a\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[3] = al_load_bitmap("BAbacate.1.png");
-    if (!arrayFrutas[3])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de BAbacate.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[4] = al_load_bitmap("BBanana.1.png");
-    if (!arrayFrutas[4])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de BBanana.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[5] = al_load_bitmap("BOvo.1.png");
-    if (!arrayFrutas[5])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de BOvo.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[6] = al_load_bitmap("CBocolis.1.png");
-    if (!arrayFrutas[6])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de CBocolis.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[7] = al_load_bitmap("CLaranja.1.png");
-    if (!arrayFrutas[7])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de CLaranja.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[8] = al_load_bitmap("CMorango.1.png");
-    if (!arrayFrutas[8])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de CMorango.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[8] = al_load_bitmap("CMorango.1.png");
-    if (!arrayFrutas[8])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de CMorango.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    arrayFrutas[9] = al_load_bitmap("EAvela.1.png");
-    if (!arrayFrutas[9])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de EAvela.1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Tela_Fase_1 = al_load_bitmap("Tela_Fase_1.png");
-    if (!imagem_Tela_Fase_1)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_Tela_Fase_1\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_como_jogar = al_load_bitmap("como_jogar.png");
-    if (!imagem_como_jogar)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_como_jogar\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_bt_jogar[0] = al_load_bitmap("bt_jogar_branco.png");
-    if (!imagem_bt_jogar[0])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_bt_jogar[0]\n");
-        inicializar_destroy_all();
-        return false;
-    }
-    imagem_bt_jogar[1] = al_load_bitmap("bt_jogar_vermelho.png");
-    if (!imagem_bt_jogar[1])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_bt_jogar[0]\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_dutos = al_load_bitmap("dutos.png");
-    if (!imagem_dutos)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_dutos\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_suga_esquerda = al_load_bitmap("friozinhoesquerdo.png");
-    if (!imagem_suga_esquerda)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de friozinhodireito\n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_suga_direita = al_load_bitmap("friozinhodireito.png");
-    if (!imagem_suga_direita)
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de imagem_suga_direita \n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Acerto[0] = al_load_bitmap("yes_esquerdo.png");
-    if (!imagem_Acerto[0])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de yes_esquerdo \n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Acerto[1] = al_load_bitmap("yes_direito.png");
-    if (!imagem_Acerto[1])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de yes_direito \n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Erro[1] = al_load_bitmap("oops_direito.png");
-    if (!imagem_Erro[1])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de oops_direito \n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-    imagem_Erro[0] = al_load_bitmap("oops_esquerdo.png");
-    if (!imagem_Erro[0])
-    {
-        fprintf(stderr, "Falha ao carregar o arquivo de oops_esquerdo \n");
-        inicializar_destroy_all();
-        return false;
-    }
-
-
-}
-
-/*=====================================
-==== Inicialização de Registradores ===
-========= da fila de eventos ==========
-=======================================*/
-void inicializar_registradores_da_fila_de_eventos()
-{
-    al_attach_audio_stream_to_mixer(musica_journey, al_get_default_mixer());
-    al_set_audio_stream_playing(musica_journey, true);
-
-    // Comandos para dizer a "fila de eventos" registrar ações do Display e Teclado.
-    al_register_event_source(fila_eventos, al_get_display_event_source(janela_inicial));
-    al_register_event_source(fila_eventos, al_get_keyboard_event_source());
-
-    // Dizemos que vamos tratar os eventos vindos do mouse
-    al_register_event_source(fila_eventos, al_get_mouse_event_source());
-}
-
-/*==============================
-==== Desalocação da Memória ====
-================================*/
-
-void inicializar_destroy_all()
-{
-    // Desalocação da Memória
-    al_destroy_font(fonte28);
-
-    al_destroy_display(janela_inicial);
-
-    al_destroy_event_queue(fila_eventos);
-
-    al_destroy_bitmap(imagem_inicial);
-    al_destroy_bitmap(imagem_opcoes);
-    al_destroy_bitmap(imagem_on_Melodia);
-    al_destroy_bitmap(imagem_off_Melodia);
-    al_destroy_bitmap(imagem_on_SFX);
-    al_destroy_bitmap(imagem_off_SFX);
-    al_destroy_bitmap(imagem_Iniciante);
-    al_destroy_bitmap(imagem_Normal);
-    al_destroy_bitmap(imagem_Desafiante);
-    al_destroy_bitmap(imagem_Plataforma_down_down);
-    al_destroy_bitmap(imagem_Plataforma_down_left);
-    al_destroy_bitmap(imagem_Plataforma_down_right);
-    al_destroy_bitmap(imagem_Plataforma_top_down);
-    al_destroy_bitmap(imagem_Plataforma_top_left);
-    al_destroy_bitmap(imagem_Plataforma_top_right);
-    al_destroy_bitmap(imagem_Iniciar_Jogo_Branco);
-    al_destroy_bitmap(imagem_Iniciar_Jogo_Vermelho);
-    al_destroy_bitmap(imagem_Tela_Fase_1);
-    al_destroy_bitmap(imagem_como_jogar);
-    al_destroy_audio_stream(musica_journey);
-    al_destroy_audio_stream(musica_megaman);
-}
-
-
-void iniciarTimer()
-{
-    tempoInicial = al_get_time();
-}
-
-double obterTempoTimer()
-{
-    return al_get_time() - tempoInicial;
-}
-
-void numeros_aleatorios()
-{
-    srand((unsigned)time(NULL));
-    for (i = 0; i < 10; i++)
-     {
-           /* gerando valores aleatórios entre zero e 9 */
-           j[i] = rand() % 10;
-           printf("%d\n", j[i]);
-     }
 }
