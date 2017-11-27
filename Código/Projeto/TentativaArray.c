@@ -11,7 +11,11 @@
 #include <stdbool.h>
 #include <time.h>
 #include <conio.h>
-#include "funcoes.h"
+#include "variaveisEFuncoes.h"
+#include "inicializarImagens.h"
+#include "inicializarDestroyAll.h"
+#include "inicializarTimer.h"
+
 
 /*=====================
 ==== Início do Jogo ===
@@ -20,13 +24,23 @@ int main(void)
 {
     float x = 585;
     float y = -100;
-    int dir_x = 0;
-    int dir_y = 1;
     float raio = 50.0;
     float tam_fruta = 2*raio;
+    int dir_x = 0;
+    int dir_y = 1;
 
     inicicializar_comandos();
+    if(!inicicializar_comandos)
+    {
+        fprintf(stderr, "Falha ao inicializar comandos\n");
+        return false;
+    }
     inicicializar_imagens();
+    if(!inicicializar_imagens)
+    {
+        fprintf(stderr, "Falha ao inicializar comandos\n");
+        return false;
+    }
     inicializar_registradores_da_fila_de_eventos();
     numeros_aleatorios();
 
@@ -15608,7 +15622,7 @@ int main(void)
         if(tecla == 4)
         {
             al_draw_bitmap(imagem_tela_final, 0, 0, 0);
-            al_draw_textf(fonte36, al_map_rgb(255, 255, 255), LARGURA_TELA / 2, 168, ALLEGRO_ALIGN_CENTRE, "Você acertou  %d/10 e obteve %d Pontos!",  pontos, 100*pontos);
+            al_draw_textf(fonte36, al_map_rgb(255, 255, 255), LARGURA_TELA / 2, 168, ALLEGRO_ALIGN_CENTRE, "Voce acertou  %d/10 e obteve %d Pontos!",  pontos, 100*pontos);
         }
 
         frame++;
